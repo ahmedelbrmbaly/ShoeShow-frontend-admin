@@ -1,0 +1,97 @@
+<div class="container">
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <h1 class="page-title">Dashboard</h1>
+      <div class="header-right">
+        <div class="search-bar">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search">
+        </div>
+        <!-- <div class="user-profile">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" 
+               alt="Admin" class="user-avatar">
+          <span class="user-name">Admin</span>
+        </div> -->
+      </div>
+    </header>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <div class="stat-title">Products</div>
+            <div class="stat-value">20</div>
+          </div>
+          <div class="stat-icon traffic">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+        </div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up"></i>
+          <span>3.48%</span>
+          <span class="stat-period">Since last month</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <div class="stat-title">Orders</div>
+            <div class="stat-value">23</div>
+          </div>
+          <div class="stat-icon users">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+        </div>
+        <div class="stat-change negative">
+          <i class="fas fa-arrow-down"></i>
+          <span>3.48%</span>
+          <span class="stat-period">Since last week</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <div class="stat-title">Customers</div>
+            <div class="stat-value">17</div>
+          </div>
+          <div class="stat-icon sales">
+            <i class="fas fa-users"></i>
+          </div>
+        </div>
+        <div class="stat-change negative">
+          <i class="fas fa-arrow-down"></i>
+          <span>1.10%</span>
+          <span class="stat-period">Since yesterday</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div>
+            <div class="stat-title">Revenue</div>
+            <div class="stat-value">20.65%</div>
+          </div>
+          <div class="stat-icon performance">
+            <i class="fas fa-percent"></i>
+          </div>
+        </div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up"></i>
+          <span>12%</span>
+          <span class="stat-period">Since last month</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Area -->
+    <!-- <div class="chart-section">
+      <p>Chart/Map content would go here</p>
+    </div> -->
+    <app-chart-component></app-chart-component>
+    
+  </main>
+</div>

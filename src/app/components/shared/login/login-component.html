@@ -1,0 +1,57 @@
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img style="width: 30px;margin-right: 10px;" src="assets/logo.png">
+                <div class="logo-text">ShoeShow</div>
+            </div>
+            <!-- <nav class="nav-links">
+                <a href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-user-plus"></i> Register</a>
+                <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
+            </nav> -->
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="welcome-text">
+                <h1>Welcome!</h1>
+            </div>
+
+
+            <div class="login-form">
+                <h2 style="width: 10px;margin-bottom: 15px;font-size: 30px">Login</h2>
+
+                <div>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input #emailField type="email" class="form-input" placeholder="Email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input #passwordField type="password" class="form-input" placeholder="Password" required>
+                        </div>
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+
+                    <button type="button" (click)="login(emailField.value,passwordField.value)"  class="sign-in-btn">login</button>
+                </div>
+
+                <div class="form-footer">
+                    <a href="#">Forgot password?</a>
+                    <a href="#">Create new account</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>

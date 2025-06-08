@@ -1,0 +1,140 @@
+.charts-container {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  min-height: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.sales-chart {
+  flex: 2;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+}
+
+.orders-chart {
+  flex: 1;
+  background: white;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.chart-title h3 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0 0 8px 0;
+  opacity: 0.7;
+}
+
+.sales-chart .chart-title h3 {
+  color: #94a3b8;
+}
+
+.orders-chart .chart-title h3 {
+  color: #64748b;
+}
+
+.chart-title h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sales-chart .chart-title h2 {
+  color: white;
+}
+
+.orders-chart .chart-title h2 {
+  color: #1e293b;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-active {
+  background: #6366f1;
+  color: white;
+}
+
+.btn:not(.btn-active) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+.btn:not(.btn-active):hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.chart-content {
+  height: 350px;
+  position: relative;
+}
+
+.chart-content canvas {
+  max-height: 100%;
+  width: 100% !important;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+  .charts-container {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .chart-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .chart-content {
+    height: 250px;
+  }
+  
+  .chart-title h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-card {
+    padding: 16px;
+  }
+  
+  .chart-content {
+    height: 200px;
+  }
+}

@@ -1,20 +1,38 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
+import { DashboardComponent } from './components/dashboard/dashboard';
+import { AppComponent } from './app';
+import { SidebarComponent } from './components/sidebar/sidebar';
+import { HeaderComponent } from './components/header/header';
+import { CustomerComponent } from './components/customer/customer';
+import { OrderComponent } from './components/order/order';
+import { ProductComponent } from './components/product/product';
+import { provideHttpClient } from '@angular/common/http';
+import { LoginComponent } from './components/shared/login/login-component';
+import { ChartComponent } from './chart/chart-component/chart-component';
 
 @NgModule({
   declarations: [
-    App
+    AppComponent,
+    HeaderComponent,
+    CustomerComponent,
+    SidebarComponent,
+    DashboardComponent,
+    OrderComponent,
+    ProductComponent,
+    LoginComponent,
+    ChartComponent   
+ 
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,    
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(), provideHttpClient()
   ],
-  bootstrap: [App]
+  bootstrap: [AppComponent , ChartComponent]
 })
 export class AppModule { }

@@ -1,0 +1,365 @@
+/* Ensure full-width layout */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Main container */
+.container {
+   display: flex;
+  flex-wrap: wrap; /* Prevent sidebar overflow */
+  align-items: stretch; /* Ensures equal height distribution */
+  min-height: 100vh;
+}
+
+/* Improve card layout for better responsiveness */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Better shadow effects for card */
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Stat section styling */
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6c757d;
+  text-transform: uppercase;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+/* Enhance icons with strong, modern colors */
+.stat-icon.traffic { background: #e63946; }
+.stat-icon.users { background: #ff7f50; }
+.stat-icon.sales { background: #ffd600; }
+.stat-icon.performance { background: #1d3557; }
+
+/* Value and percentage tweaks */
+.stat-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #343a40;
+}
+
+.stat-change {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  gap: 5px;
+}
+
+.stat-change.positive { color: #28a745; }
+.stat-change.negative { color: #dc3545; }
+
+.stat-period {
+  color: #6c757d;
+  font-size: 11px;
+}
+
+/* Improve chart area visibility */
+.chart-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+/* Dashboard Component Styles */
+:host {
+  display: block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1; /* ✅ Make it expand */
+  padding: 30px;
+  min-width: 100vh; /* Fix width issues on smaller screens */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 10px 20px 10px 45px;
+  color: white;
+  font-size: 14px;
+  width: 300px;
+  backdrop-filter: blur(10px);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-name {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Stats Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.stat-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8898aa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.stat-icon.traffic { 
+  background: #f5365c; 
+}
+
+.stat-icon.users { 
+  background: #fb6340; 
+}
+
+.stat-icon.sales { 
+  background: #ffd600; 
+}
+
+.stat-icon.performance { 
+  background: #11cdef; 
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: #32325d;
+  margin-bottom: 10px;
+}
+
+.stat-change {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 5px;
+}
+
+.stat-change.positive {
+  color: #2dce89;
+}
+
+.stat-change.negative {
+  color: #f5365c;
+}
+
+.stat-period {
+  color: #8898aa;
+  margin-left: 5px;
+}
+
+/* Chart Area */
+.chart-section {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8898aa;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  @media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    order: -1; /* ✅ Move sidebar above content */
+  }
+}
+
+  
+  .main-content {
+    order: 1;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-container {
+    display: flex;
+    gap: 20px;
+}
+
+.chart {
+    background-color: #1e1e2f;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 400px;
+}
+
+.chart h2 {
+    margin: 0 0 20px 0;
+}
+
+.time-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time-selector button {
+    background-color: #4a4a6a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.time-selector button.week {
+    background-color: #ffffff;
+    color: #4a4a6a;
+}
+
+canvas {
+    width: 100%;
+    height: 300px;
+}
