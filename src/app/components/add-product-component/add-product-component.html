@@ -1,0 +1,43 @@
+<div class="form-container">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <h2>Add Product</h2>
+
+    <label>Name:</label>
+    <input formControlName="name" type="text"/>
+
+    <label>Description:</label>
+    <textarea formControlName="description"></textarea>
+
+    <label>Category:</label>
+    <select formControlName="category"><option *ngFor="let c of categories" [value]="c">{{c}}</option></select>
+
+    <label>Gender:</label>
+    <select formControlName="gender"><option *ngFor="let g of genders" [value]="g">{{g}}</option></select>
+
+    <label>Price:</label>
+    <input formControlName="price" type="number" step="0.01"/>
+
+    <label>Brand:</label>
+    <select formControlName="brand"><option *ngFor="let b of brands" [value]="b">{{b}}</option></select>
+
+    <label>Images (1‑4):</label>
+    <input type="file" (change)="onImageChange($event)" multiple accept="image/*"/>
+
+    <div formArrayName="variations">
+      <div *ngFor="let varCtrl of variations.controls; let i=index" [formGroupName]="i" class="variation-card">
+        <div class="variation-inner">
+          <label>Size:</label>
+          <select formControlName="size"><option *ngFor="let s of sizes" [value]="s">{{s}}</option></select>
+          <label>Color:</label>
+          <select formControlName="color"><option *ngFor="let c of colors" [value]="c">{{c}}</option></select>
+          <label>Quantity:</label>
+          <input formControlName="quantity" type="number" min="0"/>
+          <button type="button" class="btn-remove" (click)="removeVariation(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn-add" (click)="addVariation()">+ Add Variation</button>
+    <button type="submit" [disabled]="productForm.invalid" class="btn-submit">Submit</button>
+  </form>
+</div>

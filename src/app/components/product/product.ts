@@ -27,7 +27,12 @@ searchKeyword: string = '';
 searchSubject: Subject<string> = new Subject();
 
 
-  constructor(private productService: ProductService) {}
+
+
+
+
+
+  constructor(private productService: ProductService, private router:Router) {}
 
 
 //   ngOnInit(): void {
@@ -96,28 +101,13 @@ onSearchChange(keyword: string): void {
     this.showConfirmDialog = false;
   }
 
-  // deleteConfirmed(): void {
-  //   if (this.selectedProductId !== null) {
-  //     this.productService.deleteProduct(this.selectedProductId).subscribe({
-  //       next: () => {
-  //         this.products = this.products.filter(p => p.productId !== this.selectedProductId);
-  //         this.showConfirmDialog = false;
-  //         this.selectedProductId = null;
-  //       },
-  //       error: (err) => {
-  //         console.error('Failed to delete product:', err);
-  //       }
-  //     });
-  //   }
-  // }
-
   deleteConfirmed(): void {
   if (this.selectedProductId !== null) {
     this.productService.deleteProduct(this.selectedProductId).subscribe({
       next: () => {
         this.showConfirmDialog = false;
         this.selectedProductId = null;
-        this.loadProducts(); // ✨ إعادة تحميل الصفحة
+        this.loadProducts(); 
       },
       error: (err) => {
         console.error('Failed to delete product:', err);
@@ -126,5 +116,9 @@ onSearchChange(keyword: string): void {
   }
 }
 
+
+goToAddProduct():void{
+  this.router.navigateByUrl("add-product");
+}
 
 }

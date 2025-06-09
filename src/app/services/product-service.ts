@@ -9,7 +9,7 @@ export class ProductService {
 
 
   private baseUrl = 'http://localhost:8081/api/admin/products';
-  private addUrl = '/api/admin/products';
+  private addUrl = 'http://localhost:8081/api/admin/products';
 
   constructor(private http: HttpClient) {}
 
@@ -22,6 +22,10 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<void> {
   return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+    addProduct(formData: FormData): Observable<any> {
+    return this.http.post(this.addUrl, formData);
   }
 
 

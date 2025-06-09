@@ -8,12 +8,16 @@
           <i class="fas fa-search search-icon"></i>
 
           <input
-            type="text"
-            class="search-input"
-            placeholder="Search"
-            [(ngModel)]="searchKeyword"
-            (ngModelChange)="onSearchChange($event)"
-    >
+  type="text"
+  class="search-input"
+  placeholder="Search"
+  [(ngModel)]="searchKeyword"
+  (ngModelChange)="onSearchChange($event)"
+>
+
+         <button (click)="goToAddProduct()">Add Product</button>
+
+
         </div>
       </div>
 
