@@ -16,7 +16,7 @@ export class OrderService {
   }
 
     updateOrder(orderId: number, orderData: any) {
-    return this._http.put(`http://localhost:8080/api/admin/orders/${orderId}`, orderData);
+    return this._http.put(`http://localhost:8081/api/admin/orders/${orderId}`, orderData);
   }
 
 }

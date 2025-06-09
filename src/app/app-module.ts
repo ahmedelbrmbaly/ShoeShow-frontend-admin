@@ -12,7 +12,7 @@ import { ProductComponent } from './components/product/product';
 import {HTTP_INTERCEPTORS, provideHttpClient} from '@angular/common/http';
 import { LoginComponent } from './components/shared/login/login-component';
 import { ChartComponent } from './chart/chart-component/chart-component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -24,6 +24,8 @@ import {MatIcon} from '@angular/material/icon';
 import {MatMenuTrigger} from '@angular/material/menu';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+
+
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     MatToolbar,
     MatMenuTrigger,
     MatCheckbox,
+    FormsModule,
+    
   ],
   providers: [
     {

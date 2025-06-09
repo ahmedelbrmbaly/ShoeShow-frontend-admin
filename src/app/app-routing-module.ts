@@ -8,6 +8,8 @@ import { OrderComponent } from './components/order/order';
 import { ProductComponent } from './components/product/product';
 import {LoginComponent} from './components/shared/login/login-component';
 
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'dashboard', component: DashboardComponent },
@@ -15,7 +17,8 @@ const routes: Routes = [
   { path: 'orders', component: OrderComponent },
   { path: 'products', component: ProductComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard'}
+  { path: '**', redirectTo: '/dashboard'},
+
 ];
 
 
