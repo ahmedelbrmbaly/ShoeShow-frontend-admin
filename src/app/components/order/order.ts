@@ -16,28 +16,23 @@ export class OrderComponent implements OnInit{
   currentPage: number = 0;
   pageSize: number = 7;
   totalPages: number = 0;
-  
-  
+
+
   searchKeyword: string = '';
   searchSubject: Subject<string> = new Subject();
-  
+
    constructor(private orderService: OrderService) {}
 
-  // ngOnInit(): void {
-  //   this.orderService.getAllOrders().subscribe((data: any[]) => {
-  //     this.orders = data;
-  //   });
-  // }
 
 ngOnInit(): void {
   this.searchSubject
-    .pipe(debounceTime(300)) 
+    .pipe(debounceTime(300))
     .subscribe((keyword) => {
       this.searchKeyword = keyword;
-      this.loadOrders(); 
+      this.loadOrders();
     });
 
-  this.loadOrders(); 
+  this.loadOrders();
 }
 
 loadOrders(): void {

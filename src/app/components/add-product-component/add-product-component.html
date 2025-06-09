@@ -8,7 +8,7 @@
 
 <div class="form-container">
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-  
+
     <label>Name:</label>
     <input formControlName="name" type="text"/>
 
@@ -47,4 +47,5 @@
     <button type="button" class="btn-add" (click)="addVariation()">+ Add Variation</button>
     <button type="submit" [disabled]="productForm.invalid" class="btn-submit">Submit</button>
   </form>
+</div>
 </div>
