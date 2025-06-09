@@ -17,19 +17,14 @@ import { Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit{
 
-  // products: any[] = [];
-  products: any[] = [];
+products: any[] = [];
 currentPage: number = 0;
-pageSize: number = 10;
+pageSize: number = 7;
 totalPages: number = 0;
 
 
 searchKeyword: string = '';
 searchSubject: Subject<string> = new Subject();
-
-
-
-
 
 
   constructor(private productService: ProductService) {}
