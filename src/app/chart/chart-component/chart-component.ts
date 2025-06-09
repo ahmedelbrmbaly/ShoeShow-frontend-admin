@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import {StatisticsService} from '../../services/statistics.service';
+import {SalesStatistics, StatisticsResponse} from '../../model/statisticsResponse.model';
 
 @Component({
   selector: 'app-chart-component',
@@ -9,26 +11,43 @@ import { Chart, registerables } from 'chart.js';
 })
 
 export class ChartComponent implements OnInit {
-
-  constructor() {
+  statisticsResponse: StatisticsResponse | undefined;
+  statisticsSales: SalesStatistics[] = [];
+  constructor(private statisticsService: StatisticsService) {
     Chart.register(...registerables);
+
   }
 
   ngOnInit(): void {
-    this.createSalesChart();
-    this.createOrdersChart();
+
+    this.statisticsService.getStatistics().subscribe(data => {
+      console.log("Data", data);
+      this.statisticsResponse = data;
+      this.statisticsSales = this.statisticsResponse.salesStatistics;
+      this.createSalesChart();
+      this.createOrdersChart();
+    });
   }
 
   createSalesChart(): void {
+    if (!this.statisticsSales || this.statisticsSales.length === 0) {
+      console.warn('No sales statistics data available');
+      return;
+    }
+
     const ctx = document.getElementById('salesChart') as HTMLCanvasElement;
-    
+
+    // Extract month labels and sales data from the API response
+    const labels = this.statisticsSales.map(stat => stat.month);
+    const salesData = this.statisticsSales.map(stat => stat.totalSales);
+
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels: labels,
         datasets: [{
           label: 'Sales Value',
-          data: [5000, 20000, 12000, 30000, 16000, 38000, 22000, 58000],
+          data: salesData,
           borderColor: '#6366f1',
           backgroundColor: 'rgba(99, 102, 241, 0.1)',
           borderWidth: 2,
@@ -80,15 +99,24 @@ export class ChartComponent implements OnInit {
   }
 
   createOrdersChart(): void {
+    if (!this.statisticsSales || this.statisticsSales.length === 0) {
+      console.warn('No orders statistics data available');
+      return;
+    }
+
     const ctx = document.getElementById('ordersChart') as HTMLCanvasElement;
-    
+
+    // Extract month labels and orders data from the API response
+    const labels = this.statisticsSales.map(stat => stat.month);
+    const ordersData = this.statisticsSales.map(stat => stat.totalOrders);
+
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels: labels,
         datasets: [{
           label: 'Total Orders',
-          data: [26, 19, 28, 22, 16, 28],
+          data: ordersData,
           backgroundColor: '#ff5722',
           borderRadius: 6,
           borderSkipped: 'bottom',
@@ -127,4 +155,3 @@ export class ChartComponent implements OnInit {
     });
   }
 }
-  
