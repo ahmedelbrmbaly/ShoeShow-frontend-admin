@@ -24,6 +24,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatMenuTrigger} from '@angular/material/menu';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import { AddProductComponent } from './components/add-product-component/add-product-component';
 
 
 
@@ -38,7 +39,8 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     OrderComponent,
     ProductComponent,
     LoginComponent,
-    ChartComponent
+    ChartComponent,
+    AddProductComponent 
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     MatMenuTrigger,
     MatCheckbox,
     FormsModule,
+    ReactiveFormsModule
     
   ],
   providers: [
