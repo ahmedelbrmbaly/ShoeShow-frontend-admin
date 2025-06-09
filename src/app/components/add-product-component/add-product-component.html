@@ -1,7 +1,14 @@
+<div class="container">
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <h1 class="page-title">Add Product</h1>
+    </header>
+  </main>
+
 <div class="form-container">
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <h2>Add Product</h2>
-
+  
     <label>Name:</label>
     <input formControlName="name" type="text"/>
 

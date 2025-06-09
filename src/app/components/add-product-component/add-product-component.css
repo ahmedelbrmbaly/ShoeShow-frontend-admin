@@ -1,3 +1,25 @@
+.main-content {
+  flex: 1; /* ✅ Make it expand */
+  padding: 30px;
+  min-width: 100vh; /* Fix width issues on smaller screens */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
 .form-container {
   max-width: 800px; margin: 2rem auto; padding: 2rem;
   background: #fafafa; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
