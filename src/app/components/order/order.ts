@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderServie } from '../../services/order-servie';
+import { OrderService } from '../../services/order-servie';
 
 @Component({
   selector: 'app-order',
@@ -8,19 +8,19 @@ import { OrderServie } from '../../services/order-servie';
   styleUrl: './order.css'
 })
 export class OrderComponent implements OnInit{
-  
+
   orders: any[] = [];
   statuses: string[] = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'RETURNED'];
 
-   constructor(private orderService: OrderServie) {}
+   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
-    this.orderService.getAllOrders().subscribe(data => {
+    this.orderService.getAllOrders().subscribe((data: any[]) => {
       this.orders = data;
     });
   }
 
-     onStatusChange(event: Event, order: any): void {
+  onStatusChange(event: Event, order: any): void {
   const selectElement = event.target as HTMLSelectElement;
   order.orderStatus = selectElement.value;
 }

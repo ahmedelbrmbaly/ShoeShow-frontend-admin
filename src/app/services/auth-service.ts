@@ -1,64 +1,52 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject} from 'rxjs';
+import { Observable, tap, BehaviorSubject } from 'rxjs';
+import {LoginRequest, LoginResponse} from '../model/admin.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private authStateSubject = new BehaviorSubject<boolean>(this.hasToken());
+  public authState$ = this.authStateSubject.asObservable();
 
-  private authUrl = 'http://localhost:8081/api/auth/login';
-  
-  constructor(private _http: HttpClient , private router:Router) { }
+  private API_URL = 'http://localhost:8081/api/auth/login';
 
-
-    checkAuth(email:string , password:string): void {
-    // const authPayload = { username: email, password: password };
-    // const headers = new HttpHeaders({
-    //   'Referrer-Policy': 'no-referrer'
-    // });
-    // this._http.post(this.authUrl, authPayload , {headers}).subscribe(response =>{
-    //   console.log(response);
-
-    //   if(response)
-    //   {
-    //     this.router.navigate(['/dashboard']);
-    //   }
-    //   else
-    //   {
-    //     alert("Invalid");
-    //   }
-      
-    // });
-      if(email=="nada@example.com" && password=="nada")
-      {
-          // save jwt token 
-          localStorage.setItem('username', 'admin');
-          console.log(email + " " + password);
-          window.location.reload();
-      }
-      else
-      {
-          alert("Invalid");
-      }
-
+  constructor(private _http: HttpClient, private router: Router) {
+    // Initialize the auth state based on token presence
+    this.authStateSubject.next(this.hasToken());
   }
 
 
-  isAuthenticated():boolean
-  {
-    const username = localStorage.getItem('username');
-    console.log("I 'm in isAuthintacated func username= "+ username);
-    if(username != null && username=="admin")
-    {
-      console.log("true");
-      return true;
-    }
-    else
-    {
-       console.log("false");
-      return false;
-    }
+  login(credentials: LoginRequest): Observable<LoginResponse> {
+    return this._http.post<LoginResponse>(`${this.API_URL}`, credentials)
+      .pipe(
+        tap(response => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.userId.toString());
+          // Update auth state
+          this.authStateSubject.next(true);
+        })
+      );
+  }
+
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  isAuthenticated(): boolean {
+    return this.hasToken();
+  }
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    // Update auth state
+    this.authStateSubject.next(false);
   }
 }

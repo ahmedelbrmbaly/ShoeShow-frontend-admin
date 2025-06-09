@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/dialog-styles.css';
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --danger-gradient: linear-gradient(135deg, #ff4d4d 0%, #f9546b 100%);
+  --primary-shadow: 0 10px 25px rgba(102, 126, 234, 0.25);
+  --danger-shadow: 0 10px 25px rgba(249, 84, 107, 0.25);
+  --card-radius: 16px;
+  --button-radius: 8px;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}

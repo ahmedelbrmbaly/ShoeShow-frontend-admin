@@ -9,16 +9,16 @@
   <nav>
     <ul class="nav-menu">
       <li class="nav-item">
-        <a routerLink="/dashboard" 
-           class="nav-link" 
+        <a routerLink="/dashboard"
+           class="nav-link"
            >
           <i class="nav-icon fas fa-tv"></i>
           Dashboard
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/customers" 
-           class="nav-link" 
+        <a routerLink="/customers"
+           class="nav-link"
            >
           <i class="nav-icon fas fa-users"></i>
           Customers
@@ -26,8 +26,8 @@
       </li>
 
       <li class="nav-item">
-        <a routerLink="/products" 
-           class="nav-link" 
+        <a routerLink="/products"
+           class="nav-link"
            >
           <i class="nav-icon fa-solid fa-box-open"></i>
           Products
@@ -35,58 +35,49 @@
       </li>
 
       <li class="nav-item">
-        <a routerLink="/orders" 
-           class="nav-link" 
+        <a routerLink="/orders"
+           class="nav-link"
            >
           <i class="nav-icon fa-solid fa-boxes-stacked"></i>
           Orders
         </a>
       </li>
-      
-      <!-- <li class="nav-item">
-        <a routerLink="/tables" 
-           class="nav-link" 
-           routerLinkActive="active">
-          <i class="nav-icon fas fa-table"></i>
-          Tables
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link" (click)="logout()">
-          <i class="nav-icon fas fa-sign-out-alt"></i>
-          Logout
-        </a>
-      </li> -->
     </ul>
-    
+
     <div class="nav-section">
       <div class="nav-section-title">Documentation</div>
       <ul class="nav-menu">
         <li class="nav-item">
-          <a routerLink="/getting-started" 
-             class="nav-link" 
+          <a routerLink="/getting-started"
+             class="nav-link"
              routerLinkActive="active">
             <i class="nav-icon fas fa-rocket"></i>
             Getting started
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/foundation" 
-             class="nav-link" 
+          <a routerLink="/foundation"
+             class="nav-link"
              routerLinkActive="active">
             <i class="nav-icon fas fa-palette"></i>
             Foundation
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/components" 
-             class="nav-link" 
+          <a routerLink="/components"
+             class="nav-link"
              routerLinkActive="active">
             <i class="nav-icon fas fa-cubes"></i>
             Components
           </a>
         </li>
       </ul>
+    </div>
+    <div class="nav-section">
+      <a class="nav-link" (click)="logout()">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        Logout
+      </a>
     </div>
   </nav>
 </aside>

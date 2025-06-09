@@ -6,15 +6,16 @@ import { DashboardComponent } from './components/dashboard/dashboard';
 import { CustomerComponent } from './components/customer/customer';
 import { OrderComponent } from './components/order/order';
 import { ProductComponent } from './components/product/product';
+import {LoginComponent} from './components/shared/login/login-component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent},
   { path: 'dashboard', component: DashboardComponent },
   { path: 'customers', component: CustomerComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'products', component: ProductComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' } ,
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard'}
-
 ];
 
 
