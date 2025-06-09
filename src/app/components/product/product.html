@@ -6,62 +6,75 @@
       <div class="header-right">
         <div class="search-bar">
           <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Search">
-        </div>
-      </div>
-    </header>
-  </main>
 
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search"
+            [(ngModel)]="searchKeyword"
+            (ngModelChange)="onSearchChange($event)"
+          >
+      </div>
+    </div>
+    </header>
+    <div class="addproduct">
+       <button (click)="goToAddProduct()">Add Product</button>
+      </div>
+  </main>
   <div class="card-table">
         <table >
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Budget</th>
-                    <th>Status</th>
-                    <th>Completion</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Argon Design System</td>
-                    <td>$2,500 USD</td>
-                    <td><span class="status pending">Pending</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 60%;"></div></div></td>
+            <tbody>     
+                <tr *ngFor="let product of products">
+                    <td>{{ product.productId }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price | currency:'USD' }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                          <button class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i>
+                          </button>
+
+                          <button class="action-btn delete-btn" (click)="confirmDelete(product.productId)">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+
+                    </td>
                 </tr>
-                <tr>
-                    <td>Angular Now UI Kit PRO</td>
-                    <td>$1,800 USD</td>
-                    <td><span class="status completed">Completed</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 100%;"></div></div></td>
-                </tr>
-                <tr>
-                    <td>Black Dashboard</td>
-                    <td>$3,150 USD</td>
-                    <td><span class="status delayed">Delayed</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 72%;"></div></div></td>
-                </tr>
-                <tr>
-                    <td>React Material Dashboard</td>
-                    <td>$4,400 USD</td>
-                    <td><span class="status on-schedule">On Schedule</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 90%;"></div></div></td>
-                </tr>
-                <tr>
-                    <td>Vue Paper UI Kit PRO</td>
-                    <td>$2,200 USD</td>
-                    <td><span class="status completed">Completed</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 100%;"></div></div></td>
-                </tr>
-            </tbody>
+        </tbody>
         </table>
+
         <div class="pagination">
-            <button>&lt;</button>
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>&gt;</button>
-        </div>
+              <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">&lt;</button>
+
+              <button *ngFor="let page of [].constructor(totalPages); let i = index"
+                      [class.active]="i === currentPage"
+                      (click)="goToPage(i)">
+                {{ i + 1 }}
+              </button>
+
+              <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">&gt;</button>
+            </div>
+          
     </div>
-  
+    
+</div>
+
+<!-- Confirm Delete Popup -->
+<div class="overlay" *ngIf="showConfirmDialog">
+  <div class="confirm-dialog">
+    <p>Are you sure you want to delete this product?</p>
+    <div class="btn-group">
+      <button class="yes-btn" (click)="deleteConfirmed()">Yes</button>
+      <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+    </div>
+  </div>
 </div>

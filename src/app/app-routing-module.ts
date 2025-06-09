@@ -7,6 +7,9 @@ import { CustomerComponent } from './components/customer/customer';
 import { OrderComponent } from './components/order/order';
 import { ProductComponent } from './components/product/product';
 import {LoginComponent} from './components/shared/login/login-component';
+import { AddProductComponent } from './components/add-product-component/add-product-component';
+
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -14,8 +17,11 @@ const routes: Routes = [
   { path: 'customers', component: CustomerComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'products', component: ProductComponent },
+  { path: 'add-product', component: AddProductComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard'}
+  { path: '**', redirectTo: '/dashboard'},
+  
+
 ];
 
 

@@ -238,3 +238,114 @@ td {
 .pagination button:hover {
     opacity: 0.8;
 }
+
+
+/* addproduct Controls */
+.addproduct {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+}
+
+.addproduct button {
+    border: none;
+    padding: 8px 12px;
+    background-color: #f5365c;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 25cm;
+}
+
+.addproduct button.active {
+    background-color: #f5365c;
+}
+
+.addproduct button:hover {
+    opacity: 0.8;
+}
+
+
+/* ****************CARD**************** */
+.action-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin: 0 5px;
+}
+
+.edit-btn {
+  color: #007bff;
+}
+
+.delete-btn {
+  color: #dc3545;
+}
+
+/* ***********DELETE**************** */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.confirm-dialog {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-dialog p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.yes-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+
