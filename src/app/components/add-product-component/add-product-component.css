@@ -69,9 +69,171 @@
 
 /* Variation card styling */
 .variation-card {
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.75rem;
+  background: #f4f6fb;
+  border: 1.5px solid #d1d5db;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.variation-card:hover {
+  box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+  border-color: #2563eb;
+}
+.variation-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+.variation-inner > .col-12,
+.variation-inner > .col-8,
+.variation-inner > .col-4,
+.variation-inner > .col-md-4,
+.variation-inner > .col-md-3,
+.variation-inner > .col-md-1 {
+  min-width: 180px;
+  flex: 1 1 180px;
+  margin-bottom: 0.5rem;
+}
+.variation-inner > .col-4.col-md-1 {
+  min-width: 120px;
+  flex: 0 0 120px;
+  text-align: right;
+}
+.variation-card label.form-label {
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.35rem;
+}
+.variation-card .form-select,
+.variation-card .form-control {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+}
+.variation-card .form-select:focus,
+.variation-card .form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.08);
+}
+.variation-card .invalid-feedback {
+  font-size: 0.92rem;
+  color: #dc3545;
+  margin-top: 0.15rem;
+}
+.variation-card .always-feedback {
+  min-height: 1.2em;
+  display: block;
+}
+.variation-card .btn-danger.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.95rem;
+  border-radius: 0.4rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+.variation-card .btn-danger.btn-sm i {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+.variation-card .color-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* --- Variation Grid Refactor: Flexible and Organized Inputs --- */
+.variation-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1rem;
+}
+.variation-field {
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 85px; /* Fixed height to accommodate validation message */
+}
+.variation-field .form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+.variation-field .form-select,
+.variation-field .form-control {
+  width: 100%;
+  height: 38px;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  margin-bottom: 0;
+}
+.variation-field .invalid-feedback {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+.variation-remove {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-width: 100px;
+  padding-top: 32px; /* Align with inputs, accounting for label space */
+}
+.variation-remove .btn-danger.btn-sm {
+  padding: 0.375rem 0.75rem;
+  height: 38px;
+  margin: 0;
+  white-space: nowrap;
+}
+@media (max-width: 992px) {
+  .variation-grid {
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .variation-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .variation-remove {
+    grid-column: 2;
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 576px) {
+  .variation-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .variation-remove {
+    grid-column: 1;
+    justify-content: flex-start;
+  }
+
+  .variation-field .form-select,
+  .variation-field .form-control {
+    width: 100%;
+  }
 }
 
 /* Header card for Add Product page */
@@ -128,5 +290,22 @@
   }
   .card-header {
     border-radius: 0.75rem 0.75rem 0 0;
+  }
+  .variation-card {
+    padding: 1rem 0.5rem !important;
+  }
+  .variation-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .variation-inner > * {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 100%;
+    text-align: left !important;
+  }
+  .variation-card .btn-danger.btn-sm {
+    margin-top: 0.5rem;
+    width: 100%;
   }
 }

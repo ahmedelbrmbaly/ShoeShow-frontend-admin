@@ -84,9 +84,9 @@
       <div class="card-body">
         <label class="form-label mb-3">Variations</label>
         <div formArrayName="variations">
-          <div *ngFor="let varCtrl of variations.controls; let i=index" [formGroupName]="i" class="variation-card mb-4 p-3 p-md-4 rounded-3 border">
-            <div class="row g-3 align-items-end variation-inner">
-              <div class="col-12 col-md-4">
+          <div *ngFor="let varCtrl of variations.controls; let i=index" [formGroupName]="i" class="variation-card">
+            <div class="variation-grid">
+              <div class="variation-field">
                 <label class="form-label">Size</label>
                 <select formControlName="size" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'size')}">
                   <option value="" disabled selected>Select size</option>
@@ -94,26 +94,27 @@
                 </select>
                 <div *ngIf="isVarInvalid(i, 'size')" class="invalid-feedback">Size required.</div>
               </div>
-              <div class="col-12 col-md-4">
+
+              <div class="variation-field">
                 <label class="form-label">Color</label>
-                <div class="color-select-wrapper">
-                  <span class="color-circle me-2" [ngStyle]="{'background': getColorHex(varCtrl.get('color')?.value)}"></span>
-                  <select formControlName="color" class="form-select d-inline-block w-auto align-middle" [ngClass]="{'is-invalid': isVarInvalid(i, 'color')}">
-                    <option value="" disabled selected>Select color</option>
-                    <option *ngFor="let c of colors" [value]="c">{{c}}</option>
-                  </select>
-                </div>
-                <div class="invalid-feedback always-feedback" [class.visible]="isVarInvalid(i, 'color')">
-                  <span *ngIf="isVarInvalid(i, 'color')">Color required.</span>&nbsp;
-                </div>
+                <select formControlName="color" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'color')}">
+                  <option value="" disabled selected>Select color</option>
+                  <option *ngFor="let c of colors" [value]="c">
+                    <span class="color-circle" [style.background-color]="getColorHex(c)"></span>
+                    {{c}}
+                  </option>
+                </select>
+                <div *ngIf="isVarInvalid(i, 'color')" class="invalid-feedback">Color required.</div>
               </div>
-              <div class="col-8 col-md-3">
+
+              <div class="variation-field">
                 <label class="form-label">Quantity</label>
-                <input formControlName="quantity" type="number" min="1" class="form-control" [ngClass]="{'is-invalid': isVarInvalid(i, 'quantity')}"/>
+                <input formControlName="quantity" type="number" min="1" class="form-control" [ngClass]="{'is-invalid': isVarInvalid(i, 'quantity')}">
                 <div *ngIf="isVarInvalid(i, 'quantity')" class="invalid-feedback">Min 1 required.</div>
               </div>
-              <div class="col-4 col-md-1 text-end">
-                <button type="button" class="btn btn-danger btn-sm mt-md-4" (click)="removeVariation(i)" [disabled]="variations.length === 1">
+
+              <div class="variation-remove">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeVariation(i)" [disabled]="variations.length === 1">
                   <i class="bi bi-x"></i> Remove
                 </button>
               </div>
