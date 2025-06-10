@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order-servie';
 import { debounceTime, Subject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from '../shared/info-dialog/info-dialog.component';
+
 
 @Component({
   selector: 'app-order',
@@ -21,7 +24,9 @@ export class OrderComponent implements OnInit{
   searchKeyword: string = '';
   searchSubject: Subject<string> = new Subject();
 
-   constructor(private orderService: OrderService) {}
+
+
+   constructor(private orderService: OrderService, private dialog: MatDialog) {}
 
 
 ngOnInit(): void {
@@ -55,11 +60,30 @@ loadOrders(): void {
 }
 
 
-  updateOrderStatus(order: any) {
-    this.orderService.updateOrder(order.orderId, order).subscribe(() => {
-      alert(`Order ${order.orderId} updated successfully.`);
-    });
-  }
+ updateOrderStatus(order: any) {
+  this.orderService.updateOrder(order.orderId, order).subscribe({
+    next: (response) => {
+      this.dialog.open(InfoDialogComponent, {
+        width: '400px',
+        data: {
+          message: `Order ${order.orderId} updated successfully.`,
+          type: 'accept'
+        }
+      });
+    },
+    error: (err) => {
+      this.dialog.open(InfoDialogComponent, {
+        width: '400px',
+        data: {
+          message: `Failed to update order. Error: ${err.message || 'Unknown error'}`,
+          type: 'error'
+        }
+      });
+    }
+  });
+}
+
+
 
   goToPage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
