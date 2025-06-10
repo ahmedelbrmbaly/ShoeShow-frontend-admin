@@ -3,61 +3,55 @@
   display: block;
   width: 100%;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+.customer-container {
+  padding: 3.5rem 1rem 1.5rem;
 }
 
-/* Main container */
-.container {
-   display: flex;
-  flex-wrap: wrap; /* Prevent sidebar overflow */
-  align-items: stretch; /* Ensures equal height distribution */
-  min-height: 50vh;
-}
-
-/* Main Content Styles */
-.main-content {
-  flex: 1; /* ✅ Make it expand */
-  padding: 30px;
-  min-width: 100vh; /* Fix width issues on smaller screens */
-}
-
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+/* Header Styling */
+.page-header {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
 }
 
 .page-title {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+/* Search Bar Styling */
+.search-bar-wrapper {
+  max-width: 100%;
 }
 
 .search-bar {
   position: relative;
+  width: 100%;
 }
 
 .search-input {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 25px;
-  padding: 10px 20px 10px 45px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 0.6rem 0.7rem 0.6rem 2.5rem;
   color: white;
-  font-size: 14px;
-  width: 300px;
-  backdrop-filter: blur(10px);
+  font-size: 0.9rem;
+  width: 100%;
+  min-width: 250px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.search-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .search-input::placeholder {
@@ -66,182 +60,202 @@
 
 .search-icon {
   position: absolute;
-  left: 15px;
+  left: 0.9rem;
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
 }
 
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* Card Styling */
+.card {
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease;
 }
 
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+/* Table Styling */
+.table {
+  margin-bottom: 0;
 }
 
-.user-icon {
-    font-size: 35px; /* Adjust icon size */
-    color: #424345; /* Change icon color */
+.table thead {
+  background-color: #f8f9fa;
 }
 
-.user-name {
-  color: white;
-  font-size: 14px;
+.table th {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 1rem 0.75rem;
+  border-bottom-width: 1px;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 1rem 0.75rem;
+  color: #334155;
+  border-color: #f1f5f9;
+}
+
+.table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Mobile Card Styling */
+.customer-card {
+  transition: background-color 0.3s ease;
+}
+
+.customer-card:hover {
+  background-color: #f8fafc;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.customer-id {
+  font-size: 0.85rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
   font-weight: 500;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  
-  @media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    order: -1; /* ✅ Move sidebar above content */
-  }
+.customer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-  
-  .main-content {
-    order: 1;
-  }
-  
-  .header {
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-  }
-  
-  .search-input {
-    width: 100%;
-  }
+.detail-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
 }
 
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 20px;
+.detail-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 8px;
+  margin-right: 0.75rem;
+  color: #3b82f6;
+  flex-shrink: 0;
 }
 
-/* Card Table Container */
-.card-table {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 130ch;
-    margin: auto;
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  overflow: hidden;
 }
 
-.card-table h2 {
-    margin-top: 0;
+.detail-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
 }
 
-/* Responsive Table */
-.table-container {
-    width: 100%;
-    overflow-x: auto; /* Enables horizontal scrolling on small screens */
+.detail-value {
+  font-size: 0.95rem;
+  color: #334155;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+/* Different colored icons for better visual hierarchy */
+.detail-item:nth-child(1) .detail-icon {
+  color: #3b82f6; /* Email - Blue */
 }
 
-th{
-    padding: 15px;
-    text-align: left;
-    background-color: #edeff1;
+.detail-item:nth-child(2) .detail-icon {
+  color: #10b981; /* Phone - Green */
+  background-color: rgba(16, 185, 129, 0.1);
 }
 
-td {
-    padding: 15px;
-    text-align: left;
-    border-top: 1px solid #edeff1;
-
+.detail-item:nth-child(3) .detail-icon {
+  color: #8b5cf6; /* Job - Purple */
+  background-color: rgba(139, 92, 246, 0.1);
 }
 
-/* Hide Columns on Small Screens */
-@media (max-width: 768px) {
-    th:nth-child(3), td:nth-child(3) {
-        display: none; /* Hide 'Status' column on small screens */
-    }
-
-    th, td {
-        font-size: 14px; /* Reduce text size */
-        padding: 10px;
-    }
+.detail-item:nth-child(4) .detail-icon {
+  color: #f59e0b; /* Birthday - Orange */
+  background-color: rgba(245, 158, 11, 0.1);
 }
 
-/* Make Pagination Responsive */
-@media (max-width: 600px) {
-    .pagination button {
-        font-size: 14px;
-        padding: 6px 10px; /* Reduce button size */
-    }
-}
-
-/* Status Labels */
-.status {
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 12px;
-}
-
-.status.pending { background-color: #ff6b6b; }
-.status.completed { background-color: #28a745; }
-.status.delayed { background-color: #ffc107; }
-.status.on-schedule { background-color: #007bff; }
-
-/* Completion Bar */
-.completion {
-    width: 100%;
-    height: 8px;
-    background-color: #e9ecef;
-    border-radius: 4px;
-    position: relative;
-}
-
-.completion .bar {
-    height: 100%;
-    border-radius: 4px;
-    background-color: #17a2b8;
-}
-
-/* Pagination Controls */
+/* Pagination Styling */
 .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+  gap: 0.25rem;
 }
 
-.pagination button {
-    border: none;
-    padding: 8px 12px;
-    background-color: #f5365c;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
+.page-item .page-link {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #3b82f6;
+  border: none;
+  font-weight: 500;
 }
 
-.pagination button.active {
-    background-color: #f5365c;
+.page-item.active .page-link {
+  background: #3b82f6;
+  color: white;
 }
 
-.pagination button:hover {
-    opacity: 0.8;
+.page-item.disabled .page-link {
+  background: #f1f5f9;
+  color: #94a3b8;
+  opacity: 0.8;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
 
+@media (max-width: 767.98px) {
+  .customer-container {
+    padding: 4rem 0.75rem 1rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .customer-container {
+    padding: 4.5rem 0.75rem 1rem;
+  }
+
+  .detail-item {
+    padding: 0.35rem 0;
+  }
+
+  .detail-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .customer-card {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}

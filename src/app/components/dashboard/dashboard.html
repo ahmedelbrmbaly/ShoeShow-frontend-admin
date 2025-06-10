@@ -1,96 +1,165 @@
-<div class="container">
-  <!-- Main Content -->
-  <main class="main-content">
-    <header class="header">
-      <h1 class="page-title">Dashboard</h1>
-      <div class="header-right">
-        <div class="search-bar">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Search">
-        </div>
-        <!-- <div class="user-profile">
-          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
-               alt="Admin" class="user-avatar">
-          <span class="user-name">Admin</span>
-        </div> -->
-      </div>
-    </header>
+<div class="container-fluid dashboard-container">
+  <!-- Header Section with improved spacing -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="dashboard-header p-3 rounded-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+          <div class="header-left">
+            <h1 class="page-title mb-0">Dashboard</h1>
+            <p class="text-white-50 mb-0 mt-1 d-none d-sm-block">Welcome to your ShoeShow admin panel</p>
+          </div>
+          <div class="header-right mt-3 mt-md-0">
 
-    <!-- Stats Cards -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <div class="stat-title">Products</div>
-            <div class="stat-value">{{statisticsResponse?.totalProducts}}</div>
           </div>
-          <div class="stat-icon traffic">
-            <i class="fas fa-chart-bar"></i>
-          </div>
-        </div>
-        <div class="stat-change positive">
-          <i class="fas fa-arrow-up"></i>
-          <span>3.48%</span>
-          <span class="stat-period">Since last month</span>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <div class="stat-title">Orders</div>
-            <div class="stat-value">{{ statisticsResponse?.totalOrders }}</div>
+  <!-- Stats Cards with improved spacing and responsive layout -->
+  <div class="row g-4 mb-4">
+    <!-- Products Card -->
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+      <div class="stat-card h-100 rounded-4 position-relative overflow-hidden">
+        <div class="stat-card-content p-4">
+          <div class="stat-header mb-4">
+            <div>
+              <div class="stat-title">TOTAL PRODUCTS</div>
+              <div class="stat-value mt-2">{{statisticsResponse?.totalProducts || 0}}</div>
+            </div>
+            <div class="stat-icon traffic">
+              <i class="fas fa-box"></i>
+            </div>
           </div>
-          <div class="stat-icon users">
-            <i class="fas fa-chart-pie"></i>
-          </div>
-        </div>
-        <div class="stat-change negative">
-          <i class="fas fa-arrow-down"></i>
-          <span>3.48%</span>
-          <span class="stat-period">Since last week</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <div class="stat-title">Customers</div>
-            <div class="stat-value">{{statisticsResponse?.totalUsers}}</div>
-          </div>
-          <div class="stat-icon sales">
-            <i class="fas fa-users"></i>
+          <div class="stat-change positive">
+            <i class="fas fa-arrow-up me-1"></i>
+            <span>3.48%</span>
+            <span class="stat-period">Since last month</span>
           </div>
         </div>
-        <div class="stat-change negative">
-          <i class="fas fa-arrow-down"></i>
-          <span>1.10%</span>
-          <span class="stat-period">Since yesterday</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-header">
-          <div>
-            <div class="stat-title">Revenue</div>
-            <div class="stat-value">{{revenue.toFixed(2)}}%</div>
-          </div>
-          <div class="stat-icon performance">
-            <i class="fas fa-percent"></i>
-          </div>
-        </div>
-        <div class="stat-change" [ngClass]="revenue > 0 ? 'positive' : 'negative'">
-          <i class="fas" [ngClass]="revenue > 0 ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
-          <span class="stat-period">Since last month</span>
+        <div class="stat-progress-bar">
+          <div class="progress-value" style="width: 65%"></div>
         </div>
       </div>
     </div>
 
-    <!-- Chart Area -->
-    <!-- <div class="chart-section">
-      <p>Chart/Map content would go here</p>
-    </div> -->
-    <app-chart-component></app-chart-component>
+    <!-- Orders Card -->
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+      <div class="stat-card h-100 rounded-4 position-relative overflow-hidden">
+        <div class="stat-card-content p-4">
+          <div class="stat-header mb-4">
+            <div>
+              <div class="stat-title">TOTAL ORDERS</div>
+              <div class="stat-value mt-2">{{ statisticsResponse?.totalOrders || 0 }}</div>
+            </div>
+            <div class="stat-icon users">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+          </div>
+          <div class="stat-change negative">
+            <i class="fas fa-arrow-down me-1"></i>
+            <span>2.25%</span>
+            <span class="stat-period">Since last week</span>
+          </div>
+        </div>
+        <div class="stat-progress-bar">
+          <div class="progress-value" style="width: 45%"></div>
+        </div>
+      </div>
+    </div>
 
-  </main>
+    <!-- Customers Card -->
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+      <div class="stat-card h-100 rounded-4 position-relative overflow-hidden">
+        <div class="stat-card-content p-4">
+          <div class="stat-header mb-4">
+            <div>
+              <div class="stat-title">TOTAL CUSTOMERS</div>
+              <div class="stat-value mt-2">{{statisticsResponse?.totalUsers || 0}}</div>
+            </div>
+            <div class="stat-icon sales">
+              <i class="fas fa-users"></i>
+            </div>
+          </div>
+          <div class="stat-change negative">
+            <i class="fas fa-arrow-down me-1"></i>
+            <span>1.10%</span>
+            <span class="stat-period">Since yesterday</span>
+          </div>
+        </div>
+        <div class="stat-progress-bar">
+          <div class="progress-value" style="width: 78%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Card -->
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+      <div class="stat-card h-100 rounded-4 position-relative overflow-hidden">
+        <div class="stat-card-content p-4">
+          <div class="stat-header mb-4">
+            <div>
+              <div class="stat-title">REVENUE GROWTH</div>
+              <div class="stat-value mt-2">{{revenue?.toFixed(2) || 0}}%</div>
+            </div>
+            <div class="stat-icon performance">
+              <i class="fas fa-chart-line"></i>
+            </div>
+          </div>
+          <div class="stat-change" [ngClass]="revenue > 0 ? 'positive' : 'negative'">
+            <i class="fas me-1" [ngClass]="revenue > 0 ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+            <span>{{revenue > 0 ? '+' : ''}}{{revenue?.toFixed(1) || 0}}%</span>
+            <span class="stat-period">Since last month</span>
+          </div>
+        </div>
+        <div class="stat-progress-bar">
+          <div class="progress-value" [ngStyle]="{'width': (revenue > 0 ? revenue : 0) + '%'}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Area with improved spacing and responsive layout -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="charts-container p-0">
+        <app-chart-component></app-chart-component>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="quick-actions-panel rounded-4 p-4">
+        <h4 class="panel-title mb-4">Quick Actions</h4>
+        <div class="row g-3">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <button class="action-btn w-100 py-3" routerLink="/products">
+              <i class="fas fa-plus-circle mb-2"></i>
+              <span>Add New Product</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <button class="action-btn w-100 py-3" routerLink="/orders">
+              <i class="fas fa-clipboard-list mb-2"></i>
+              <span>View Orders</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <button class="action-btn w-100 py-3" routerLink="/customers">
+              <i class="fas fa-user-friends mb-2"></i>
+              <span>Manage Customers</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <button class="action-btn w-100 py-3">
+              <i class="fas fa-cog mb-2"></i>
+              <span>Settings</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

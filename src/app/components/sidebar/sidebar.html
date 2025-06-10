@@ -1,83 +1,66 @@
 <aside class="sidebar">
-  <div class="logo">
-      <img class="logo-icon" src="assets/logo.png">
-    <div class="logo-text">ShoeShow</div>
+  <div class="d-flex justify-content-between align-items-center px-3 py-2 d-md-none">
+    <div class="logo d-flex align-items-center">
+      <img class="logo-icon" src="assets/logo.png" alt="ShoeShow">
+      <div class="logo-text">ShoeShow</div>
+    </div>
+    <button class="navbar-toggler border-0" type="button" (click)="toggleSidebar()">
+      <i class="fas" [ngClass]="isCollapsed ? 'fa-bars' : 'fa-times'"></i>
+    </button>
   </div>
-             <!-- [routerLinkActiveOptions]="{exact: true}" -->
-             <!-- <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> -->
 
-  <nav>
-    <ul class="nav-menu">
-      <li class="nav-item">
-        <a routerLink="/dashboard"
-           class="nav-link"
-           >
-          <i class="nav-icon fas fa-tv"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/customers"
-           class="nav-link"
-           >
-          <i class="nav-icon fas fa-users"></i>
-          Customers
-        </a>
-      </li>
+  <div class="sidebar-content" [ngClass]="{'collapsed': isCollapsed && isMobileView}">
+    <div class="logo d-none d-md-flex align-items-center px-3 py-3">
+      <img class="logo-icon" src="assets/logo.png" alt="ShoeShow">
+      <div class="logo-text">ShoeShow</div>
+    </div>
 
-      <li class="nav-item">
-        <a routerLink="/products"
-           class="nav-link"
-           >
-          <i class="nav-icon fa-solid fa-box-open"></i>
-          Products
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a routerLink="/orders"
-           class="nav-link"
-           >
-          <i class="nav-icon fa-solid fa-boxes-stacked"></i>
-          Orders
-        </a>
-      </li>
-    </ul>
-
-    <div class="nav-section">
-      <div class="nav-section-title">Documentation</div>
+    <nav>
       <ul class="nav-menu">
         <li class="nav-item">
-          <a routerLink="/getting-started"
+          <a routerLink="/dashboard"
              class="nav-link"
-             routerLinkActive="active">
-            <i class="nav-icon fas fa-rocket"></i>
-            Getting started
+             routerLinkActive="active"
+             (click)="closeMenuOnMobile()">
+            <i class="nav-icon fas fa-tv"></i>
+            <span>Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/foundation"
+          <a routerLink="/customers"
              class="nav-link"
-             routerLinkActive="active">
-            <i class="nav-icon fas fa-palette"></i>
-            Foundation
+             routerLinkActive="active"
+             (click)="closeMenuOnMobile()">
+            <i class="nav-icon fas fa-users"></i>
+            <span>Customers</span>
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/components"
+          <a routerLink="/products"
              class="nav-link"
-             routerLinkActive="active">
-            <i class="nav-icon fas fa-cubes"></i>
-            Components
+             routerLinkActive="active"
+             (click)="closeMenuOnMobile()">
+            <i class="nav-icon fa-solid fa-box-open"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/orders"
+             class="nav-link"
+             routerLinkActive="active"
+             (click)="closeMenuOnMobile()">
+            <i class="nav-icon fa-solid fa-boxes-stacked"></i>
+            <span>Orders</span>
           </a>
         </li>
       </ul>
-    </div>
-    <div class="nav-section">
-      <a class="nav-link" (click)="logout()">
-        <i class="nav-icon fas fa-sign-out-alt"></i>
-        Logout
-      </a>
-    </div>
-  </nav>
+
+      <div class="nav-section mt-auto">
+        <a class="nav-link logout-link" (click)="logout()">
+          <i class="nav-icon fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </nav>
+  </div>
 </aside>

@@ -12,6 +12,7 @@
   padding: 24px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
 }
 
 .chart-card:hover {
@@ -20,13 +21,11 @@
 }
 
 .sales-chart {
-  flex: 2;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   color: white;
 }
 
 .orders-chart {
-  flex: 1;
   background: white;
 }
 
@@ -108,22 +107,26 @@
 }
 
 /* Responsive Design */
-@media (max-width: 700px) {
-  .charts-container {
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
+@media (max-width: 991.98px) {
+  .chart-card {
+    margin-bottom: 1.5rem;
   }
-  
+}
+
+@media (max-width: 767.98px) {
   .chart-header {
     flex-direction: column;
     gap: 16px;
   }
-  
-  .chart-content {
-    height: 250px;
+
+  .chart-controls {
+    align-self: flex-start;
   }
-  
+
+  .chart-content {
+    height: 300px;
+  }
+
   .chart-title h2 {
     font-size: 20px;
   }
@@ -133,8 +136,8 @@
   .chart-card {
     padding: 16px;
   }
-  
+
   .chart-content {
-    height: 200px;
+    height: 250px;
   }
 }

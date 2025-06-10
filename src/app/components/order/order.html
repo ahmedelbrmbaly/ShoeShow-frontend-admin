@@ -1,101 +1,117 @@
-<div class="container">
+<div class="container-fluid">
   <!-- Main Content -->
-  <main class="main-content">
-    <header class="header">
-      <h1 class="page-title">Orders</h1>
-      <div class="header-right">
-        <div class="search-bar">
-          <i class="fas fa-search search-icon"></i>
-          <input
-            type="text"
-            class="search-input"
-            placeholder="Search"
-            [(ngModel)]="searchKeyword"
-            (ngModelChange)="onSearchChange($event)"
-          >
+  <div class="row">
+    <div class="col-12">
+      <header class="header mb-4">
+        <h1 class="page-title">Orders</h1>
+        <div class="header-right">
+          <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search"
+              [(ngModel)]="searchKeyword"
+              (ngModelChange)="onSearchChange($event)"
+            >
           </div>
-      </div>
-    </header>
-  </main>
+        </div>
+      </header>
+    </div>
+  </div>
 
-  <div class="card-table">
-        <table >
-            <thead>
-                 <tr>
-                  <th>ID</th>
-                  <th>Email</th>
-                  <th>Total Amount</th>
-                  <th>Ordered At</th>
-                  <th>Order Status</th>
-                  <th>Action</th>
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-0">
+          <!-- Table for larger screens -->
+          <div class="table-responsive d-none d-md-block">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="bg-light">
+                <tr>
+                  <th class="py-3">ID</th>
+                  <th class="py-3">Email</th>
+                  <th class="py-3">Total Amount</th>
+                  <th class="py-3">Ordered At</th>
+                  <th class="py-3">Order Status</th>
+                  <th class="py-3 text-center">Action</th>
                 </tr>
-            </thead>
-            <tbody>
-
-              <tr *ngFor="let order of orders">
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders">
                   <td>{{ order.orderId }}</td>
                   <td>{{ order.email }}</td>
-                  <td>{{ order.totalAmount }}</td>
+                  <td>{{ order.totalAmount | currency:'USD' }}</td>
                   <td>{{ order.createdAt | date: 'medium' }}</td>
                   <td>
-                    <select (change)="onStatusChange($event, order)">
+                    <select class="form-select form-select-sm" (change)="onStatusChange($event, order)">
                       <option *ngFor="let status of statuses" [value]="status" [selected]="order.orderStatus === status">
                         {{ status }}
                       </option>
                     </select>
                   </td>
-                  <td>
-                    <div class="pagination">
-                    <button (click)="updateOrderStatus(order)" >Update</button>
-                    </div>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-primary" (click)="updateOrderStatus(order)">Update</button>
                   </td>
                 </tr>
+              </tbody>
+            </table>
+          </div>
 
+          <!-- Cards for mobile view -->
+          <div class="d-md-none">
+            <div *ngFor="let order of orders" class="card mb-3 border-0">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="badge bg-primary rounded-pill">ID: {{ order.orderId }}</span>
+                  <span class="text-muted small">{{ order.createdAt | date: 'medium' }}</span>
+                </div>
 
+                <h5 class="card-title mb-3">{{ order.email }}</h5>
 
-                <!-- <tr>
-                    <td>Argon Design System</td>
-                    <td>$2,500 USD</td>
-                    <td><span class="status pending">Pending</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 60%;"></div></div></td>
-                </tr> -->
-                <!-- <tr>
-                    <td>Angular Now UI Kit PRO</td>
-                    <td>$1,800 USD</td>
-                    <td><span class="status completed">Completed</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 100%;"></div></div></td>
-                </tr>
-                <tr>
-                    <td>Black Dashboard</td>
-                    <td>$3,150 USD</td>
-                    <td><span class="status delayed">Delayed</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 72%;"></div></div></td>
-                </tr>
-                <tr>
-                    <td>React Material Dashboard</td>
-                    <td>$4,400 USD</td>
-                    <td><span class="status on-schedule">On Schedule</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 90%;"></div></div></td>
-                </tr>
-                <tr>
-                    <td>Vue Paper UI Kit PRO</td>
-                    <td>$2,200 USD</td>
-                    <td><span class="status completed">Completed</span></td>
-                    <td><div class="completion"><div class="bar" style="width: 100%;"></div></div></td>
-                </tr> -->
-            </tbody>
-        </table>
-        
-        <div class="pagination">
-          <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">&lt;</button>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="text-muted">Amount:</span>
+                  <span class="fw-bold">{{ order.totalAmount | currency:'USD' }}</span>
+                </div>
 
-          <button *ngFor="let page of [].constructor(totalPages); let i = index"
-                  [class.active]="i === currentPage"
-                  (click)="goToPage(i)">
-            {{ i + 1 }}
-          </button>
+                <div class="mb-3">
+                  <label class="form-label text-muted">Status:</label>
+                  <select class="form-select" (change)="onStatusChange($event, order)">
+                    <option *ngFor="let status of statuses" [value]="status" [selected]="order.orderStatus === status">
+                      {{ status }}
+                    </option>
+                  </select>
+                </div>
 
-          <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">&gt;</button>
+                <div class="d-grid">
+                  <button class="btn btn-primary" (click)="updateOrderStatus(order)">Update Order</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Pagination -->
+        <div class="card-footer bg-transparent">
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item" [class.disabled]="currentPage === 0">
+                <button class="page-link" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+              </li>
+              <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="i === currentPage">
+                <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+                <button class="page-link" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './styles/dialog-styles.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 :root {
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -36,5 +37,18 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Accessibility improvements */
+.btn:focus, .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  .btn, .nav-link, .form-control {
+    padding: 0.5rem 0.75rem;
+    min-height: 48px;
   }
 }

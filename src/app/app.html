@@ -1,12 +1,16 @@
-<div class="app-container" *ngIf="isAuthenticated">
-  <!-- Show sidebar and header only when user is authenticated   -->
-  <!-- <ng-container > -->
-    <app-sidebar></app-sidebar>
-    <router-outlet></router-outlet>
-  <!-- </ng-container> -->
+<!-- Authenticated user layout -->
+<div class="container-fluid p-0 app-container" *ngIf="isAuthenticated" [ngClass]="{'sidebar-open': !isSidebarCollapsed && isMobileView}">
+  <div class="row g-0 h-100">
+    <div class="col-lg-2 col-md-3 col-sm-12 sidebar-wrapper">
+      <app-sidebar (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-12 content-wrapper" (click)="closeSidebarOnMobile()">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
 
- <!-- Show login when user is not authenticated  -->
-<div *ngIf="!isAuthenticated">
+<!-- Login screen -->
+<div class="container-fluid p-0 vh-100" *ngIf="!isAuthenticated">
   <app-login-component (loginSuccess)="onLoginSuccess()"></app-login-component>
 </div>

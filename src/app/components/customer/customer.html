@@ -1,68 +1,141 @@
-<div class="container">
+<div class="container-fluid customer-container">
   <!-- Main Content -->
-  <main class="main-content">
-    <header class="header">
-      <h1 class="page-title">Customers</h1>
-      <div class="header-right">
-        <div class="search-bar">
-          <i class="fas fa-search search-icon"></i>
-          <input
-            type="text"
-            class="search-input"
-            placeholder="Search"
-            [(ngModel)]="searchKeyword"
-            (ngModelChange)="onSearchChange($event)"
-    >        
+  <div class="row mb-4">
+    <div class="col-12">
+      <header class="page-header p-3 p-sm-4 rounded-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="page-title mb-0">Customers</h1>
+            <p class="text-white-50 mb-0 mt-1 d-none d-sm-block">Manage your customer data</p>
+          </div>
+          <div class="search-bar-wrapper">
+            <div class="search-bar">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Search..."
+                [(ngModel)]="searchKeyword"
+                (ngModelChange)="onSearchChange($event)"
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow border-0 rounded-4 overflow-hidden">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-0">
+          <h5 class="mb-0 fw-bold">Customer List</h5>
+          <span class="badge bg-primary rounded-pill">Total: {{users?.length || 0}}</span>
+        </div>
+
+        <div class="card-body p-0">
+          <!-- Table for larger screens -->
+          <div class="table-responsive d-none d-md-block">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th class="ps-4">ID</th>
+                  <th>Name</th>
+                  <th>Phone Number</th>
+                  <th>Email</th>
+                  <th>Job</th>
+                  <th class="pe-4">Birth Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td class="ps-4 text-secondary fw-medium">{{ user.userId }}</td>
+                  <td class="fw-semibold">{{ user.name }}</td>
+                  <td>{{ user.phoneNumber || 'N/A' }}</td>
+                  <td>
+                    <a href="mailto:{{user.email}}" class="text-decoration-none">{{ user.email }}</a>
+                  </td>
+                  <td>{{ user.job || 'N/A' }}</td>
+                  <td class="pe-4">{{ user.birthdate || 'N/A' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Cards for mobile view -->
+          <div class="d-md-none">
+            <div *ngFor="let user of users" class="customer-card px-3 py-4 border-bottom">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <h5 class="card-title fw-bold mb-1">{{ user.name }}</h5>
+                <span class="customer-id">ID: {{ user.userId }}</span>
+              </div>
+
+              <div class="customer-details">
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Email</span>
+                    <a href="mailto:{{user.email}}" class="detail-value">{{ user.email }}</a>
+                  </div>
+                </div>
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Phone</span>
+                    <span class="detail-value">{{ user.phoneNumber || 'N/A' }}</span>
+                  </div>
+                </div>
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Job</span>
+                    <span class="detail-value">{{ user.job || 'N/A' }}</span>
+                  </div>
+                </div>
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                  </div>
+                  <div class="detail-content">
+                    <span class="detail-label">Birth Date</span>
+                    <span class="detail-value">{{ user.birthdate || 'N/A' }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="card-footer bg-white py-3">
+          <nav aria-label="Customer pagination">
+            <ul class="pagination justify-content-center flex-wrap gap-2 mb-0">
+              <li class="page-item" [class.disabled]="currentPage === 0">
+                <button class="page-link" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+              </li>
+              <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="i === currentPage">
+                <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+                <button class="page-link" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      </div>
-    </header>
-  </main>
-
-  <div class="card-table">    
-    <table>
-      
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Phone Number</th>
-          <th>Email</th>
-          <th>Job</th>
-          <th>Birth Date</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.userId }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.phoneNumber }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.job }}</td>
-          <td>{{ user.birthdate }}</td>
-        </tr>
-        <!-- <tr> -->
-            <!-- <td>1</td>
-            <td>Salma Mohammed</td>
-            <td>Salma&#64;gmail.com</td>
-            <td>Developer</td>
-            <td>12/4/1999</td> -->
-            <!-- <td><span class="status pending">Pending</span></td> -->
-            <!-- <td><div class="completion"><div class="bar" style="width: 60%;"></div></div></td> -->
-        <!-- </tr> -->
-
-      </tbody>
-  </table>
-    <div class="pagination">
-      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">&lt;</button>
-
-      <button *ngFor="let page of [].constructor(totalPages); let i = index"
-              [class.active]="i === currentPage"
-              (click)="goToPage(i)">
-        {{ i + 1 }}
-      </button>
-
-      <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">&gt;</button>
     </div>
   </div>
 </div>

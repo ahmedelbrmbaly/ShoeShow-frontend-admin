@@ -1,15 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { AuthService } from './services/auth-service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  standalone:false,
+  standalone: false,
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+  isSidebarCollapsed = true;
+  isMobileView = false;
   private authSubscription: Subscription | undefined;
 
   constructor(private authService: AuthService) {}
@@ -24,10 +26,38 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log('Auth state changed:', isAuthenticated);
       this.isAuthenticated = isAuthenticated;
     });
+
+    // Check current screen size
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isMobileView = window.innerWidth < 768;
+    // On desktop, sidebar is always visible
+    if (!this.isMobileView) {
+      this.isSidebarCollapsed = false;
+    } else {
+      this.isSidebarCollapsed = true;
+    }
+  }
+
+  onSidebarToggle(isCollapsed: boolean) {
+    this.isSidebarCollapsed = isCollapsed;
+  }
+
+  closeSidebarOnMobile() {
+    if (this.isMobileView && !this.isSidebarCollapsed) {
+      this.isSidebarCollapsed = true;
+    }
   }
 
   onLoginSuccess() {
-      this.isAuthenticated = true;
+    this.isAuthenticated = true;
   }
 
   ngOnDestroy() {

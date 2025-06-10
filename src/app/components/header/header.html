@@ -1,17 +1,38 @@
 <div class="container">
   <!-- Main Content -->
   <main class="main-content">
-    <header class="header">
-      <h1 class="page-title">Dashboard</h1>
-      <div class="header-right">
-        <div class="search-bar">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Search">
-        </div>
-        <div class="user-profile">
-          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" 
-               alt="Admin" class="user-avatar">
-          <span class="user-name">Admin</span>
+    <header class="app-header">
+      <div class="container-fluid">
+        <div class="header-wrapper">
+          <div class="header-left d-none d-md-flex align-items-center">
+            <h1 class="page-title mb-0">{{pageTitle || 'Dashboard'}}</h1>
+          </div>
+
+          <div class="header-right ms-auto">
+
+            <div class="dropdown">
+              <div class="user-profile" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="user-avatar-container">
+                  <i class="fas fa-user-circle user-icon"></i>
+                  <span class="status-indicator online"></span>
+                </div>
+                <div class="user-info d-none d-md-block">
+                  <span class="user-name">Admin</span>
+                  <span class="user-role">Administrator</span>
+                </div>
+              </div>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userDropdown">
+                <li><h6 class="dropdown-header">Admin Account</h6></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i>Profile</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" (click)="logout()">
+                  <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </header>
