@@ -8,6 +8,7 @@ import { OrderComponent } from './components/order/order';
 import { ProductComponent } from './components/product/product';
 import {LoginComponent} from './components/shared/login/login-component';
 import { AddProductComponent } from './components/add-product-component/add-product-component';
+import { EditProductComponent } from './components/edit-product-component/edit-product-component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'orders', component: OrderComponent },
   { path: 'products', component: ProductComponent },
   { path: 'add-product', component: AddProductComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+ { path: 'edit-product/:productId', component: EditProductComponent },  
+ { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard'},
   
 

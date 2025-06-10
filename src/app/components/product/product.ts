@@ -30,11 +30,6 @@ searchKeyword: string = '';
 searchSubject: Subject<string> = new Subject();
 
 
-
-
-
-
-
   constructor(private productService: ProductService, private router:Router) {}
 
 
@@ -132,6 +127,11 @@ onSearchChange(keyword: string): void {
 
 goToAddProduct():void{
   this.router.navigateByUrl("add-product");
+}
+
+goToEditProduct(productId: number): void {
+  console.log("product Id =" + productId);
+  this.router.navigateByUrl(`/edit-product/${productId}`);
 }
 
 }
