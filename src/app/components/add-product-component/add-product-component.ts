@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product-service';
 
@@ -9,26 +9,32 @@ import { ProductService } from '../../services/product-service';
   templateUrl: './add-product-component.html',
   styleUrl: './add-product-component.css'
 })
-export class AddProductComponent {
-
-   productForm: FormGroup;
+export class AddProductComponent implements OnInit {
+  productForm: FormGroup;
   brands = ['Nike', 'Adidas', 'Puma', 'Reebok', 'New Balance'];
   colors = ['Black', 'White', 'Blue', 'Grey', 'Brown', 'Red'];
   genders = ['MALE', 'FEMALE'];
   categories = ['SNEAKERS', 'CLASSIC', 'CASUAL'];
   sizes = [35,36,37,38,39,40,41,42,43,44,45,46,47,48];
   images: File[] = [];
+  imagesPreview: string[] = [];
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
     this.productForm = this.fb.group({
-      name: ['', Validators.required],
-      description: [''],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      description: ['', [Validators.maxLength(300)]],
       category: ['', Validators.required],
       gender: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
+      price: ['', [Validators.required, Validators.min(0.01)]],
       brand: ['', Validators.required],
       variations: this.fb.array([])
     });
+  }
+
+  ngOnInit() {
+    if (this.variations.length === 0) {
+      this.addVariation();
+    }
   }
 
   get variations(): FormArray {
@@ -39,26 +45,53 @@ export class AddProductComponent {
     this.variations.push(this.fb.group({
       size: ['', Validators.required],
       color: ['', Validators.required],
-      quantity: ['', [Validators.required, Validators.min(0)]]
+      quantity: ['', [Validators.required, Validators.min(1)]]
     }));
   }
 
   removeVariation(i: number) {
-    this.variations.removeAt(i);
+    if (this.variations.length > 1) {
+      this.variations.removeAt(i);
+    }
   }
 
   onImageChange(event: any) {
     const files = Array.from(event.target.files) as File[];
     if (files.length <= 4) {
       this.images = files;
+      this.imagesPreview = [];
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagesPreview.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
     } else {
       alert('Select up to 4 images only');
     }
   }
 
-  onSubmit() {
-    if (this.productForm.invalid) return;
+  removeImage(index: number) {
+    this.images.splice(index, 1);
+    this.imagesPreview.splice(index, 1);
+  }
 
+  isInvalid(controlName: string): boolean {
+    const control = this.productForm.get(controlName);
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  isVarInvalid(i: number, controlName: string): boolean {
+    const control = (this.variations.at(i) as FormGroup).get(controlName);
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  onSubmit() {
+    if (this.productForm.invalid) {
+      this.productForm.markAllAsTouched();
+      return;
+    }
     const formData = new FormData();
     const v = this.productForm.value;
     formData.append('name', v.name);
@@ -67,17 +100,21 @@ export class AddProductComponent {
     formData.append('gender', v.gender);
     formData.append('price', v.price);
     formData.append('brand', v.brand);
-
     this.images.forEach(img => formData.append('images', img));
-
     v.variations.forEach((varItem: any, idx: number) => {
       formData.append(`variations[${idx}].size`, `SIZE_${varItem.size}`);
       formData.append(`variations[${idx}].color`, varItem.color);
       formData.append(`variations[${idx}].quantity`, varItem.quantity.toString());
     });
-
     this.productService.addProduct(formData).subscribe({
-      next: res => { alert('Product added successfully!'); this.productForm.reset(); this.images = []; this.variations.clear(); },
+      next: res => {
+        alert('Product added successfully!');
+        this.productForm.reset();
+        this.images = [];
+        this.imagesPreview = [];
+        while (this.variations.length) this.variations.removeAt(0);
+        this.addVariation();
+      },
       error: err => alert('Failed to add product')
     });
   }

@@ -1,61 +1,7 @@
-.main-content {
-  flex: 1; /* ✅ Make it expand */
-  padding: 30px;
-  min-width: 100vh; /* Fix width issues on smaller screens */
+.form-container
+{
+  padding: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
 }
-
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.page-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-.form-container {
-  max-width: 800px; margin: 2rem auto; padding: 2rem;
-  background: #fafafa; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-h2 { text-align: center; margin-bottom: 1.5rem; color: #333; }
-label { display: block; margin-top: 1rem; font-weight: 600; color: #444; }
-input, textarea, select {
-  width: 100%; padding: 0.6rem; margin-top: 0.3rem;
-  border: 1px solid #ccc; border-radius: 6px;
-}
-textarea { resize: vertical; height: 80px; }
-.variation-card {
-  background: #fff; border: 1px solid #e0e0e0;
-  padding: 1rem; margin-top: 1rem; border-radius: 8px;
-}
-.variation-inner {
-  display: flex; flex-wrap: wrap; gap: 1rem;
-}
-.variation-inner > label,
-.variation-inner > select,
-.variation-inner > input {
-  flex: 1 1 120px;
-}
-.btn-remove {
-  background: #dc3545; color: #fff;
-  border: none; padding: 0.5rem 1rem;
-  border-radius: 6px; cursor: pointer;
-  align-self: flex-end;
-}
-.btn-add, .btn-submit {
-  margin-top: 1.5rem; padding: 0.6rem 1.2rem;
-  border: none; color: #fff; border-radius: 6px;
-  cursor: pointer;
-}
-.btn-add { background: #007bff; }
-.btn-submit { background: #28a745; margin-left: 1rem; }
-.btn-add:hover { background: #0056b3; }
-.btn-submit:hover { background: #1e7e34; }
-.btn-remove:hover { background: #c82333; }
