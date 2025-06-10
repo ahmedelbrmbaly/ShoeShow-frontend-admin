@@ -1,101 +1,143 @@
-:host ::ng-deep .mat-mdc-dialog-container {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+/* Dialog container styling */
+.logout-dialog-container {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  max-width: 420px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+:host ::ng-deep .mat-mdc-dialog-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Card styling */
+.card {
+  background-color: white;
+  box-shadow: 0 6px 16px rgba(44, 62, 80, 0.10); /* blue shadow tint */
+  border-radius: 8px;
+}
+
+/* Dialog header and content styling */
 h2 {
   margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
   letter-spacing: -0.3px;
-  position: relative;
-  padding-bottom: 12px;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 3px;
 }
 
 mat-dialog-content {
-  margin: 24px 0;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #64748b;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4b6cb7;
+  padding: 0 !important;
 }
 
-mat-dialog-actions {
-  padding: 8px 0 16px 0;
-  gap: 12px;
-}
-
-::ng-deep .mat-mdc-dialog-content {
-  padding: 0 24px;
-  max-width: 320px;
-}
-
-::ng-deep .mat-mdc-dialog-title {
-  padding: 24px 24px 0 24px;
-}
-
-::ng-deep .mat-mdc-dialog-actions {
-  padding: 8px 24px 24px 24px;
+mat-dialog-content p {
   margin-bottom: 0;
 }
 
-::ng-deep button.mat-mdc-button-base {
-  border-radius: 8px;
+/* Logout icon styling */
+.logout-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2c3e50 0%, #4b6cb7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.18);
+}
+
+.logout-icon {
+  color: white;
+  font-size: 1.15rem;
+}
+
+/* Dialog layout fixes */
+::ng-deep .mat-mdc-dialog-content {
+  padding: 0;
+  max-width: 100%;
+}
+
+::ng-deep .mat-mdc-dialog-title {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+/* Action area styling */
+.border-top {
+  border-top: 1px solid rgba(76, 108, 183, 0.15) !important;
+}
+
+/* Button styling */
+.btn-cancel {
+  color: #2c3e50 !important;
   font-weight: 500;
-  letter-spacing: 0.3px;
-  padding: 0 20px;
-  height: 40px;
+  border-radius: 6px;
+  min-width: 90px;
+  height: 38px;
   transition: all 0.2s ease;
+  background-color: #f1f5f9;
 }
 
-::ng-deep button.mat-mdc-button-base.mat-mdc-raised-button.mat-warn {
-  background: linear-gradient(135deg, #ff4d4d 0%, #f9546b 100%);
-  box-shadow: 0 4px 12px rgba(249, 84, 107, 0.3);
+.btn-cancel:hover {
+  background-color: #e2e8f0;
 }
 
-::ng-deep button.mat-mdc-button-base.mat-mdc-raised-button.mat-warn:hover {
-  box-shadow: 0 6px 16px rgba(249, 84, 107, 0.4);
-  transform: translateY(-2px);
+.btn-logout {
+  background: linear-gradient(135deg, #2c3e50 0%, #4b6cb7 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(76, 108, 183, 0.18) !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px !important;
+  min-width: 90px !important;
+  height: 38px !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
 }
 
-::ng-deep button.mat-mdc-button-base.mat-mdc-button:not(.mat-warn) {
-  color: #64748b;
+.btn-logout:hover {
+  background: linear-gradient(135deg, #4b6cb7 0%, #2c3e50 100%) !important;
+  box-shadow: 0 6px 12px rgba(76, 108, 183, 0.28) !important;
 }
 
-::ng-deep button.mat-mdc-button-base.mat-mdc-button:not(.mat-warn):hover {
-  background-color: rgba(100, 116, 139, 0.08);
-}
+/* Responsive styling */
+@media (max-width: 576px) {
+  .logout-dialog-container {
+    padding: 1.25rem;
+  }
 
-@media (prefers-color-scheme: dark) {
   h2 {
-    color: #f1f5f9;
+    font-size: 1.15rem;
   }
 
   mat-dialog-content {
-    color: #cbd5e1;
+    font-size: 0.9rem;
   }
 
-  ::ng-deep .mat-mdc-dialog-container {
-    background: #1e293b;
+  .logout-icon-container {
+    width: 42px;
+    height: 42px;
   }
 
-  ::ng-deep button.mat-mdc-button-base.mat-mdc-button:not(.mat-warn) {
-    color: #cbd5e1;
+  .logout-icon {
+    font-size: 1rem;
   }
 
-  ::ng-deep button.mat-mdc-button-base.mat-mdc-button:not(.mat-warn):hover {
-    background-color: rgba(203, 213, 225, 0.08);
+  .btn-cancel, .btn-logout {
+    min-width: 80px;
+    height: 36px;
   }
 }
