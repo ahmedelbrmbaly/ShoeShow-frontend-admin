@@ -1,0 +1,33 @@
+<div class="info-dialog-container" [attr.data-type]="data.type || 'info'" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDesc">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border-0">
+        <div class="card-body p-0">
+          <div class="d-flex align-items-center mb-4">
+            <div class="icon-container me-3 flex-shrink-0" [ngClass]="getIconContainerClass()" aria-hidden="true">
+              <i [class]="getIconClass()"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h2 mat-dialog-title class="mb-1" id="dialogTitle">{{data.title || getDefaultTitle()}}</h2>
+              <mat-dialog-content id="dialogDesc">
+                <p class="mb-0">{{ data.message }}</p>
+              </mat-dialog-content>
+            </div>
+          </div>
+
+          <mat-dialog-actions align="end" class="pt-3 border-top">
+            <div class="d-flex gap-2 w-100 justify-content-end">
+              <button *ngIf="data.secondaryAction" mat-button class="btn-secondary-action" (click)="onSecondary()">
+                <span>{{data.secondaryAction.text}}</span>
+              </button>
+              <button mat-raised-button class="btn-primary-action" (click)="onPrimary()" cdkFocusInitial>
+                <i *ngIf="data.primaryAction && data.primaryAction.icon" [class]="data.primaryAction.icon + ' me-2'"></i>
+                <span>{{data.primaryAction?.text || 'OK'}}</span>
+              </button>
+            </div>
+          </mat-dialog-actions>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@ import {MatButton} from '@angular/material/button';
     MatDialogActions,
     MatButton
   ],
-  styleUrls: ['./logout-dialog.component.css']
+  styleUrls: ['./logout-dialog.component.css'],
 })
 export class LogoutDialogComponent {
   constructor(

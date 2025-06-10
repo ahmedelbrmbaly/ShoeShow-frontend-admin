@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product-service';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from '../shared/info-dialog/info-dialog.component';
 
 
 @Component({
@@ -19,7 +21,11 @@ export class AddProductComponent implements OnInit {
   images: File[] = [];
   imagesPreview: string[] = [];
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private dialog: MatDialog
+  ) {
     this.productForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.maxLength(300)]],
@@ -68,7 +74,13 @@ export class AddProductComponent implements OnInit {
         reader.readAsDataURL(file);
       });
     } else {
-      alert('Select up to 4 images only');
+      this.dialog.open(InfoDialogComponent, {
+        width: '400px',
+        data: {
+          message: 'Select up to 4 images only',
+          type: 'error'
+        }
+      });
     }
   }
 
@@ -120,14 +132,29 @@ export class AddProductComponent implements OnInit {
     });
     this.productService.addProduct(formData).subscribe({
       next: res => {
-        alert('Product added successfully!');
-        this.productForm.reset();
-        this.images = [];
-        this.imagesPreview = [];
-        while (this.variations.length) this.variations.removeAt(0);
-        this.addVariation();
+        this.dialog.open(InfoDialogComponent, {
+          width: '400px',
+          data: {
+            message: 'Product added successfully!',
+            type: 'success'
+          }
+        }).afterClosed().subscribe(() => {
+          this.productForm.reset();
+          this.images = [];
+          this.imagesPreview = [];
+          while (this.variations.length) this.variations.removeAt(0);
+          this.addVariation();
+        });
       },
-      error: err => alert('Failed to add product')
+      error: err => {
+        this.dialog.open(InfoDialogComponent, {
+          width: '400px',
+          data: {
+            message: 'Failed to add product. Please try again.',
+            type: 'error'
+          }
+        });
+      }
     });
   }
 
