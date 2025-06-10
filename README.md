@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ahmedelbrmbaly/shoeshow-frontend-admin)
+
 # ShoeShow Admin Frontend
 
 ShoeShow Admin Frontend is a web-based administration dashboard for managing the ShoeShow e-commerce platform. Built with Angular, it provides a modern, responsive interface for product, order, and customer management, as well as analytics and reporting.
@@ -104,4 +106,3 @@ ShoeShow-frontend-admin/
 ---
 
 © 2025 ShoeShow. All rights reserved.
-
