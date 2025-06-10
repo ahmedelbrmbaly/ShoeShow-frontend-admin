@@ -19,8 +19,11 @@ export class ProductComponent implements OnInit{
 
 products: any[] = [];
 currentPage: number = 0;
-pageSize: number = 7;
+pageSize: number = 8; // Default page size now set to 8
 totalPages: number = 0;
+totalItems: number = 0;
+pageSizeOptions: number[] = [8, 16, 24]; // Available page size options
+Math = Math; // Make Math available in template
 
 
 searchKeyword: string = '';
@@ -40,13 +43,14 @@ searchSubject: Subject<string> = new Subject();
 // }
 ngOnInit(): void {
   this.searchSubject
-    .pipe(debounceTime(300)) 
+    .pipe(debounceTime(300))
     .subscribe((keyword) => {
       this.searchKeyword = keyword;
-      this.loadProducts(); 
+      this.currentPage = 0; // Reset to first page when searching
+      this.loadProducts();
     });
 
-  this.loadProducts(); 
+  this.loadProducts();
 }
 
 
@@ -56,6 +60,7 @@ loadProducts(): void {
       this.products = response.content;
       this.totalPages = response.totalPages;
       this.currentPage = response.number;
+      this.totalItems = response.totalElements;
       console.log('Products loaded:', this.products);
     },
     error: (err) => {
@@ -67,6 +72,14 @@ loadProducts(): void {
 goToPage(page: number): void {
   if (page >= 0 && page < this.totalPages) {
     this.currentPage = page;
+    this.loadProducts();
+  }
+}
+
+changePageSize(size: number): void {
+  if (this.pageSizeOptions.includes(size) && this.pageSize !== size) {
+    this.pageSize = size;
+    this.currentPage = 0; // Reset to first page when changing page size
     this.loadProducts();
   }
 }
@@ -107,7 +120,7 @@ onSearchChange(keyword: string): void {
       next: () => {
         this.showConfirmDialog = false;
         this.selectedProductId = null;
-        this.loadProducts(); 
+        this.loadProducts();
       },
       error: (err) => {
         console.error('Failed to delete product:', err);
