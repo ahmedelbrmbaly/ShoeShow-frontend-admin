@@ -104,22 +104,30 @@
 
             <div class="row g-3">
               <div class="col-md-3">
-                <label class="form-label">Size</label>
-                <select formControlName="size" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'size')}">
-                  <option value="" disabled>Select size</option>
-                  <option *ngFor="let s of sizes" [value]="s">{{s}}</option>
-                </select>
+               <label class="form-label">Size</label>
+                <ng-container *ngIf="productId && i < existingVariationsCount; else editableSize">
+                  <input type="text" class="form-control" [value]="varCtrl.get('size')?.value" disabled>
+                </ng-container>
+                <ng-template #editableSize>
+                  <select formControlName="size" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'size')}">
+                    <option value="" disabled>Select size</option>
+                    <option *ngFor="let s of sizes" [value]="s">{{s}}</option>
+                  </select>
+                </ng-template>
                 <div *ngIf="isVarInvalid(i, 'size')" class="invalid-feedback">Size required.</div>
               </div>
 
-              <div class="col-md-3">
+             <div class="col-md-3">
                 <label class="form-label">Color</label>
-                <select formControlName="color" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'color')}">
-                  <option value="" disabled>Select color</option>
-                  <option *ngFor="let c of colors" [value]="c">
-                    {{c}}
-                  </option>
-                </select>
+                <ng-container *ngIf="productId && i < existingVariationsCount; else editableColor">
+                  <input type="text" class="form-control" [value]="varCtrl.get('color')?.value" disabled>
+                </ng-container>
+                <ng-template #editableColor>
+                  <select formControlName="color" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'color')}">
+                    <option value="" disabled>Select color</option>
+                    <option *ngFor="let c of colors" [value]="c">{{c}}</option>
+                  </select>
+                </ng-template>
                 <div *ngIf="isVarInvalid(i, 'color')" class="invalid-feedback">Color required.</div>
               </div>
 
