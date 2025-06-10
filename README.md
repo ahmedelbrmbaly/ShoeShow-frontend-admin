@@ -1,59 +1,107 @@
-# ShoeShowFrontendAdmin
+# ShoeShow Admin Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+ShoeShow Admin Frontend is a web-based administration dashboard for managing the ShoeShow e-commerce platform. Built with Angular, it provides a modern, responsive interface for product, order, and customer management, as well as analytics and reporting.
 
-## Development server
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [Further Documentation](#further-documentation)
 
-To start a local development server, run:
+## Features
+- Admin authentication and session management
+- Product CRUD (Create, Read, Update, Delete) operations
+- Order management and status tracking
+- Customer management
+- Dashboard with sales and statistics charts
+- Responsive UI with Angular Material and Bootstrap
+- Dialogs and notifications for user feedback
 
+## Tech Stack
+- **Framework:** Angular 20
+- **UI:** Angular Material, Bootstrap 5
+- **Charts:** Chart.js
+- **State & Utilities:** RxJS
+
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or later recommended)
+- npm (v9 or later)
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   cd ShoeShow-frontend-admin
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the App
+Start the development server:
 ```bash
 ng serve
 ```
+Visit [http://localhost:4201](http://localhost:4200) in your browser.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+## Project Structure
+```
+ShoeShow-frontend-admin/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── add-product-component/
+│   │   │   ├── edit-product-component/
+│   │   │   ├── dashboard/
+│   │   │   ├── order/
+│   │   │   ├── product/
+│   │   │   ├── customer/
+│   │   │   ├── shared/
+│   │   │   │   ├── info-dialog/
+│   │   │   │   ├── login/
+│   │   │   │   └── logout-dialog/
+│   │   ├── services/
+│   │   ├── model/
+│   │   ├── guards/
+│   │   ├── interceptors/
+│   │   └── ...
+│   ├── styles/
+│   └── ...
+├── public/
+├── angular.json
+├── package.json
+└── ...
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Usage
+- **Login:** Use your admin credentials to access the dashboard.
+- **Products:** Add, edit, or remove products. Upload images and manage variations.
+- **Orders:** View and update order statuses.
+- **Customers:** Browse and manage customer information.
+- **Dashboard:** Visualize sales and statistics with interactive charts.
 
-```bash
-ng generate --help
-```
+#
 
-## Building
+## Contributing
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Push to your branch and open a Pull Request
 
-To build the project run:
+## Further Documentation
+- For detailed component and service documentation, visit the [DeepWiki project page](https://deepwiki.com/ahmedelbrmbaly/shoeshow-frontend-admin).
+- For Angular best practices, see the [Angular documentation](https://angular.io/docs).
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+© 2025 ShoeShow. All rights reserved.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
