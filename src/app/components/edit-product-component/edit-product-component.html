@@ -76,7 +76,7 @@
             <div class="image-preview-list mt-3" *ngIf="imagesPreview.length > 0">
               <div class="d-flex flex-wrap gap-2">
                 <div class="image-preview-wrapper" *ngFor="let img of imagesPreview; let i = index" style="position: relative; display: inline-block;">
-<img [src]="'http://localhost:8081/' + img" class="image-preview" alt="Product Image" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"/>                  <button type="button" class="btn btn-danger btn-sm" (click)="removeImage(i)"
+<img [src]=" img" class="image-preview" alt="Product Image" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"/>                  <button type="button" class="btn btn-danger btn-sm" (click)="removeImage(i)"
                           style="position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; padding: 0; border-radius: 50%; font-size: 12px;">
                     &times;
                   </button>

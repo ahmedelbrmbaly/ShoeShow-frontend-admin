@@ -23,10 +23,10 @@ export class EditProductComponent {
   imagesPreview: string[] = [];
   productId: number | null = null;
   // STATIC_PATH: string = "src/main/resources/static/";
-  
+
   // Track which variations are from existing product vs newly added
   existingVariationsCount: number = 0;
-  
+
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -55,6 +55,8 @@ export class EditProductComponent {
         this.productService.getProductById(this.productId).subscribe({
           next: (product) => {
             console.log("Product data received:", product);
+            // add server path to images
+              product.img = product.img.map((imagePath: string) => "http://localhost:8081/" + imagePath);
             this.populateForm(product);
           },
           error: (err) => {
@@ -105,7 +107,7 @@ export class EditProductComponent {
 
     // Clear existing variations and populate new ones
     this.variations.clear();
-    
+
     if (product.productInfos && product.productInfos.length > 0) {
       product.productInfos.forEach((info: any) => {
         this.variations.push(this.fb.group({
@@ -114,7 +116,7 @@ export class EditProductComponent {
           quantity: [info.quantity, [Validators.required, Validators.min(1)]]
         }));
       });
-      
+
       // Track how many variations are from existing product
       this.existingVariationsCount = product.productInfos.length;
     } else {
@@ -142,13 +144,13 @@ export class EditProductComponent {
     if (product.category) {
       return product.category;
     }
-    
+
     // Otherwise, try to infer from name
     const name = product.name.toLowerCase();
     if (name.includes('sneaker')) return 'SNEAKERS';
     if (name.includes('classic')) return 'CLASSIC';
     if (name.includes('casual')) return 'CASUAL';
-    
+
     return 'SNEAKERS'; // Default fallback
   }
 
@@ -158,12 +160,12 @@ export class EditProductComponent {
     if (product.gender) {
       return product.gender;
     }
-    
+
     // Otherwise, try to infer from name
     const name = product.name.toLowerCase();
     if (name.includes('male') && !name.includes('female')) return 'MALE';
     if (name.includes('female')) return 'FEMALE';
-    
+
     return 'MALE'; // Default fallback
   }
 
@@ -196,7 +198,7 @@ export class EditProductComponent {
     if (!this.productId) {
       return this.variations.length > 1;
     }
-    
+
     return index >= this.existingVariationsCount && this.variations.length > 1;
   }
 
@@ -256,27 +258,27 @@ export class EditProductComponent {
       this.productForm.markAllAsTouched();
       return;
     }
-    
+
     const formData = new FormData();
     const v = this.productForm.value;
-    
+
     // Add product ID if editing
     // if (this.productId) {
     //   formData.append('productId', this.productId.toString());
     // }
-    
+
     formData.append('name', v.name);
     formData.append('description', v.description);
     formData.append('category', v.category);
     formData.append('gender', v.gender);
     formData.append('price', v.price);
     formData.append('brand', v.brand);
-    
+
     // Only append new images if any were selected
     if (this.images.length > 0) {
       this.images.forEach(img => formData.append('images', img));
     }
-    
+
     v.variations.forEach((varItem: any, idx: number) => {
       formData.append(`variations[${idx}].size`, `SIZE_${varItem.size}`);
       formData.append(`variations[${idx}].color`, varItem.color);
@@ -284,7 +286,7 @@ export class EditProductComponent {
     });
 
     // Use different service method for update vs create
-    const serviceCall = this.productId 
+    const serviceCall = this.productId
       ? this.productService.updateProduct(this.productId, formData)
       : this.productService.addProduct(formData);
 
