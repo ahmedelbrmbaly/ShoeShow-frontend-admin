@@ -14,7 +14,7 @@ import { InfoDialogComponent } from '../shared/info-dialog/info-dialog.component
 export class EditProductComponent {
 
   productForm: FormGroup;
-  brands = ['Nike', 'Adidas', 'Merrel', 'Gucci', 'New Balance', 'Sketchers'];
+  brands = ['Nike', 'Merrel', 'Adidas', 'Puma', 'Gucci', 'Sketchers', 'Reebok', 'New Balance'];
   colors = ['Black', 'White', 'Blue', 'Grey', 'Brown', 'Red', 'Cream']; // Added 'Cream' from your data
   genders = ['MALE', 'FEMALE'];
   categories = ['SNEAKERS', 'CLASSIC', 'CASUAL'];

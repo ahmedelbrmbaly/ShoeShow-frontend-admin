@@ -13,8 +13,8 @@ import { InfoDialogComponent } from '../shared/info-dialog/info-dialog.component
 })
 export class AddProductComponent implements OnInit {
   productForm: FormGroup;
-  brands = ['Nike', 'Adidas', 'Puma', 'Reebok', 'New Balance'];
-  colors = ['Black', 'White', 'Blue', 'Grey', 'Brown', 'Red'];
+  brands = ['Nike', 'Merrel', 'Adidas', 'Puma', 'Gucci', 'Sketchers', 'Reebok', 'New Balance'];
+  colors = ['Black', 'White', 'Blue', 'Grey', 'Brown', 'Red', 'Cream'];
   genders = ['MALE', 'FEMALE'];
   categories = ['SNEAKERS', 'CLASSIC', 'CASUAL'];
   sizes = [35,36,37,38,39,40,41,42,43,44,45,46,47,48];
