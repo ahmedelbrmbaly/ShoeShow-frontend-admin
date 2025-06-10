@@ -156,7 +156,7 @@
   display: grid;
   grid-template-columns: 2fr 2fr 1fr auto;
   gap: 1.25rem;
-  align-items: center;
+  align-items: start;  /* Changed from center to start */
   padding: 1rem;
 }
 .variation-field {
@@ -194,7 +194,8 @@
   justify-content: flex-end;
   align-items: flex-start;
   min-width: 100px;
-  padding-top: 32px; /* Align with inputs, accounting for label space */
+  height: 85px; /* Match the height of variation-field */
+  padding-top: 28px; /* Adjusted to align with input fields */
 }
 .variation-remove .btn-danger.btn-sm {
   padding: 0.375rem 0.75rem;
