@@ -1,19 +1,23 @@
-<div class="container py-5">
-  <!-- Main Content -->
-  <main class="main-content">
-    <header class="page-header p-3 p-sm-4 rounded-4">
-      <div  class="d-flex flex-column flex-md-row justify-content-between align-items-md-center w-100 gap-3">
-        <div >
-          <h1 class="page-title mb-0">Add New Product </h1>
+<div class="container-fluid product-container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card bg-primary border-0 shadow page-header-card">
+        <div class="card-body p-4 rounded-4">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center w-100 gap-3">
+            <div>
+              <h1 class="page-title text-white mb-0">Add New Product</h1>
+              <p class="text-white-50 mb-0 mt-1">Add a new product to your inventory</p>
+            </div>
           </div>
+        </div>
       </div>
-    </header>
-  </main>
-  <div class="form-container shadow-sm rounded-4 p-4 p-md-5">
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" novalidate>
-      <!-- Basic Info Section -->
-      <div class="form-section">
-        <div class="section-title">Basic Information</div>
+    </div>
+  </div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" novalidate>
+    <!-- Card 1: Basic Info -->
+    <div class="card form-card mb-4">
+      <div class="card-header bg-primary text-white fw-bold">Product Information</div>
+      <div class="card-body">
         <div class="row g-4">
           <div class="col-12 col-md-6">
             <label class="form-label">Name</label>
@@ -55,15 +59,16 @@
           </div>
         </div>
       </div>
-      <!-- Images Section -->
-      <div class="form-section">
-        <div class="section-title">Product Images</div>
+    </div>
+    <!-- Card 2: Images -->
+    <div class="card form-card mb-4">
+      <div class="card-header bg-primary text-white fw-bold">Product Images</div>
+      <div class="card-body">
         <div class="row g-3">
           <div class="col-12">
             <label class="form-label">Images (1–4)</label>
             <input type="file" (change)="onImageChange($event)" multiple accept="image/*" class="form-control"/>
-            <!-- Image preview -->
-            <div class="image-preview-list" *ngIf="images && images.length">
+            <div class="image-preview-list mt-3" *ngIf="images && images.length">
               <div class="image-preview-wrapper" *ngFor="let img of imagesPreview; let i = index">
                 <img [src]="img" class="image-preview" alt="Preview" />
                 <button type="button" class="remove-image-btn" (click)="removeImage(i)" title="Remove image">&times;</button>
@@ -72,9 +77,11 @@
           </div>
         </div>
       </div>
-      <!-- Variations Section -->
-      <div class="form-section">
-        <div class="section-title">Product Variations</div>
+    </div>
+    <!-- Card 3: Variations -->
+    <div class="card form-card mb-4">
+      <div class="card-header bg-primary text-white fw-bold">Product Variations</div>
+      <div class="card-body">
         <label class="form-label mb-3">Variations</label>
         <div formArrayName="variations">
           <div *ngFor="let varCtrl of variations.controls; let i=index" [formGroupName]="i" class="variation-card mb-4 p-3 p-md-4 rounded-3 border">
@@ -89,11 +96,16 @@
               </div>
               <div class="col-12 col-md-4">
                 <label class="form-label">Color</label>
-                <select formControlName="color" class="form-select" [ngClass]="{'is-invalid': isVarInvalid(i, 'color')}">
-                  <option value="" disabled selected>Select color</option>
-                  <option *ngFor="let c of colors" [value]="c">{{c}}</option>
-                </select>
-                <div *ngIf="isVarInvalid(i, 'color')" class="invalid-feedback">Color required.</div>
+                <div class="color-select-wrapper">
+                  <span class="color-circle me-2" [ngStyle]="{'background': getColorHex(varCtrl.get('color')?.value)}"></span>
+                  <select formControlName="color" class="form-select d-inline-block w-auto align-middle" [ngClass]="{'is-invalid': isVarInvalid(i, 'color')}">
+                    <option value="" disabled selected>Select color</option>
+                    <option *ngFor="let c of colors" [value]="c">{{c}}</option>
+                  </select>
+                </div>
+                <div class="invalid-feedback always-feedback" [class.visible]="isVarInvalid(i, 'color')">
+                  <span *ngIf="isVarInvalid(i, 'color')">Color required.</span>&nbsp;
+                </div>
               </div>
               <div class="col-8 col-md-3">
                 <label class="form-label">Quantity</label>
@@ -112,11 +124,11 @@
           <i class="bi bi-plus"></i> Add Variation
         </button>
       </div>
-      <div class="d-flex justify-content-end mt-4">
-        <button type="submit" [disabled]="productForm.invalid" class="btn btn-success px-4 py-2">
-          <i class="bi bi-check2-circle me-2"></i> Save Product
-        </button>
-      </div>
-    </form>
-  </div>
+    </div>
+    <div class="d-flex justify-content-end mt-4">
+      <button type="submit" [disabled]="productForm.invalid" class="btn btn-success px-4 py-2">
+        <i class="bi bi-check2-circle me-2"></i> Save Product
+      </button>
+    </div>
+  </form>
 </div>

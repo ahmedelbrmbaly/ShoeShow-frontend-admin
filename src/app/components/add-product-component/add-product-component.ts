@@ -87,6 +87,18 @@ export class AddProductComponent implements OnInit {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
+  getColorHex(color: string): string {
+    const colorMap: { [key: string]: string } = {
+      Black: '#222',
+      White: '#fff',
+      Blue: '#2563eb',
+      Grey: '#6b7280',
+      Brown: '#8d5524',
+      Red: '#dc2626'
+    };
+    return colorMap[color] || '#ccc';
+  }
+
   onSubmit() {
     if (this.productForm.invalid) {
       this.productForm.markAllAsTouched();
