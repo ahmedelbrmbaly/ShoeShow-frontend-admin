@@ -91,7 +91,7 @@ export class EditProductComponent {
       category: category,
       gender: gender,
       price: product.price,
-      brand: this.extractBrand(product.name) // Extract brand from name
+      brand: this.extractBrand(product) // Extract brand from name
     });
 
     // Populate images from API response
@@ -127,12 +127,10 @@ export class EditProductComponent {
   }
 
   // Helper method to extract brand from product name
-  extractBrand(productName: string): string {
-    const name = productName.toLowerCase();
-    for (const brand of this.brands) {
-      if (name.includes(brand.toLowerCase())) {
-        return brand;
-      }
+  extractBrand(product: any): string {
+
+    if(product.brand){
+      return product.brand;
     }
 
     return 'NIKE'; // Return empty if no brand found
