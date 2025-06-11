@@ -5,6 +5,7 @@
 [![Status](https://img.shields.io/badge/status-active-brightgreen?style=for-the-badge)](#)
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange?style=for-the-badge)](CONTRIBUTING.md)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ahmedelbrmbaly/shoeshow-frontend-admin)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/930a1ea3-0ff9-4104-b199-bd1e3c798814/deploy-status)](https://app.netlify.com/projects/shoe-show-admin/deploys)
 
 # ShoeShow Admin Frontend
 
