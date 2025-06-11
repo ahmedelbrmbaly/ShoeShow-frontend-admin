@@ -56,7 +56,7 @@ export class EditProductComponent {
           next: (product) => {
             console.log("Product data received:", product);
             // add server path to images
-              product.img = product.img.map((imagePath: string) => "http://localhost:8081/" + imagePath);
+              product.img = product.img.map((imagePath: string) => "http://185.69.166.150/" + imagePath);
             this.populateForm(product);
           },
           error: (err) => {
