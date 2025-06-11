@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {StatisticsResponse} from '../model/statisticsResponse.model';
 import {HttpClient} from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  })
+@Injectable({
+  providedIn: 'root'
+})
 export class StatisticsService {
-  URL = 'http://localhost:8081/api/admin/statistics';
+  private URL = `${environment.apiUrl}/admin/statistics`;
 
   constructor(private _http: HttpClient) { }
 
